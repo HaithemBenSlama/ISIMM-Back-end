@@ -16,7 +16,6 @@ public interface EnseignantRepository extends JpaRepository<Enseignant, Long> {
 
     @Query("SELECT s FROM Enseignant s where  s.email=?1")
     Optional<Enseignant> chargeFindEnseignantByEmail(String email);
-    Optional<Enseignant> chargeFindEnseignantByCin(String cin);
 
 
 }
