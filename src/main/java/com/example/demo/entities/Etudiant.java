@@ -30,10 +30,11 @@ public class Etudiant extends Personne {
     @OneToMany(mappedBy = "etudiant",fetch=FetchType.LAZY)
     private Set<Note> notes = new HashSet<Note>();
 
-    public Etudiant(String cin, String nom, String prenom, Date naissance, Sexe sexe, String adresse, String password, String email, String telephone, int age, Date DateEmbauche, int NbJourCongeTotale, int NbJourCongeRestant, float Salaire, Set<Note> notes) {
+    public Etudiant(String cin, String nom, String prenom, Date naissance, Sexe sexe, String adresse, String password, String email, String telephone, int age, TD td, TP tp) {
         super(cin, nom, prenom, naissance, sexe, adresse, password, email, telephone, age);
+        this.td = td;
+        this.tp = tp;
     }
-
 
     public Etudiant() {
 
