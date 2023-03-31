@@ -333,6 +333,11 @@ public class DemoApplication {
 		Reclamation reclamation2 = new Reclamation(e25,new Date(),"Double correction dans cette matiere","Pending",5112,TypeDevoir.DS);
 		Reclamation reclamation3 = new Reclamation(e14,new Date(),"Je veux verifier ma copie du devoir","Pending",5121,TypeDevoir.DS);
 
+		reclamation1.setEnseignant(en2);
+		reclamation2.setEnseignant(en12);
+		reclamation3.setEnseignant(en5);
+
+
 		reclamation.save(reclamation1);reclamation.save(reclamation2);
 		reclamation.save(reclamation3);
 
