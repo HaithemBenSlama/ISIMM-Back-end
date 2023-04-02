@@ -178,7 +178,7 @@ public class DemoApplication {
 
 
 
-		Section s1= new Section("Section 1",sem1,new HashSet<TD>());
+		Section s1= new Section("ING_INF_1",sem1,new HashSet<TD>());
 		section.save(s1);
 
 		TD td1= new TD("TD1",s1,new HashSet<TP>(),new HashSet<Etudiant>());
@@ -350,14 +350,32 @@ public class DemoApplication {
 		EnseignantMatiere enseignantMatiere6= new EnseignantMatiere(en1,m6,Session.CR,Groups.SECTION, s1.getIdSection());
 		EnseignantMatiere enseignantMatiere7= new EnseignantMatiere(en1,m6,Session.TD,Groups.TD, td1.getIdTd());
 
+		enseignantMatiere1.setSemestre(sem1);
+		enseignantMatiere2.setSemestre(sem1);
+		enseignantMatiere3.setSemestre(sem1);
+		enseignantMatiere4.setSemestre(sem1);
+		enseignantMatiere5.setSemestre(sem1);
+		enseignantMatiere6.setSemestre(sem1);
+		enseignantMatiere7.setSemestre(sem1);
+
+
 
 		EnseignantMatiere enseignantMatiere8= new EnseignantMatiere(en2,m1, Session.CR,Groups.SECTION, s1.getIdSection());
 		EnseignantMatiere enseignantMatiere9= new EnseignantMatiere(en2,m1, Session.TP,Groups.TP,tp1.getIdTp());
 		EnseignantMatiere enseignantMatiere10= new EnseignantMatiere(en2,m1, Session.TP,Groups.TP,tp2.getIdTp());
 
+		enseignantMatiere8.setSemestre(sem1);
+		enseignantMatiere9.setSemestre(sem1);
+		enseignantMatiere10.setSemestre(sem1);
+
+
 		EnseignantMatiere enseignantMatiere11= new EnseignantMatiere(en3,m5,Session.TP,Groups.TP, tp1.getIdTp());
 		EnseignantMatiere enseignantMatiere12= new EnseignantMatiere(en3,m5,Session.TP,Groups.TP, tp2.getIdTp());
 		EnseignantMatiere enseignantMatiere13= new EnseignantMatiere(en3,m5,Session.CR,Groups.SECTION, s1.getIdSection());
+
+		enseignantMatiere11.setSemestre(sem1);
+		enseignantMatiere12.setSemestre(sem1);
+		enseignantMatiere13.setSemestre(sem1);
 
 
 		EnseignantMatiere enseignantMatiere14= new EnseignantMatiere(en4,m11,Session.TD,Groups.TD,td1.getIdTd());
