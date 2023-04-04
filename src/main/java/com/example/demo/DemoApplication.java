@@ -111,7 +111,7 @@ public class DemoApplication {
 		Matiere m4=new Matiere("Techniques de construction d’analyseurs lexico-syntaxiques",3F,1.5F,60,20,20,0,5122,22,0,22,0,0,r1,u2);
 
 		Matiere m5=new Matiere("Applications logicielles d'entreprise",2F,1F,50,20,30,0,5131,22,0,22,0,0,r1,u3);
-		Matiere m6=new Matiere("Modélisation UML/OCL",2F,1F,60,20,20,0,0,5132,22,0,0,22,r1,u3);
+		Matiere m6=new Matiere("Modélisation UML/OCL",2F,1F,60,20,20,0,5132,22,0,0,0,22,r1,u3);
 
 		Matiere m7=new Matiere("Programmation Web avancée",3F,1.5F,50,20,30,0,5141,22,0,22,0,0,r1,u4);
 		Matiere m8=new Matiere("Programmation mobile",2F,1.5F,50,20,30,0,5142,22,0,22,0,0,r1,u4);
@@ -301,6 +301,39 @@ public class DemoApplication {
 		Note n52=new Note(m6,e25,en1, TypeDevoir.DS,12.5F,new Date());
 		Note n53=new Note(m6,e26,en1, TypeDevoir.DS,13.5F,new Date());
 		Note n54=new Note(m6,e27,en1, TypeDevoir.DS,10.5F,new Date());
+
+		n1.setSemestre(sem1);
+		n2.setSemestre(sem1);
+		n3.setSemestre(sem1);
+		n4.setSemestre(sem1);
+		n5.setSemestre(sem1);
+		n6.setSemestre(sem1);
+		n7.setSemestre(sem1);
+		n8.setSemestre(sem1);
+		n9.setSemestre(sem1);
+		n10.setSemestre(sem1);
+		n11.setSemestre(sem1);
+		n12.setSemestre(sem1);
+		n13.setSemestre(sem1);
+		n14.setSemestre(sem1);
+		n15.setSemestre(sem1);
+		n16.setSemestre(sem1);
+		n17.setSemestre(sem1);
+		n18.setSemestre(sem1);
+		n19.setSemestre(sem1);
+		n20.setSemestre(sem1);
+		n21.setSemestre(sem1);
+		n22.setSemestre(sem1);
+		n23.setSemestre(sem1);
+		n24.setSemestre(sem1);
+		n25.setSemestre(sem1);
+		n26.setSemestre(sem1);
+		n27.setSemestre(sem1);
+		n28.setSemestre(sem1);
+
+
+
+
 
 
 

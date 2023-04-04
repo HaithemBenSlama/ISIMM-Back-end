@@ -5,22 +5,37 @@ import com.example.demo.entities.Section;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 @CrossOrigin
 @RestController
 @RequestMapping("api/isimm/chargeNote/EnseignantSection")
 public class NoteEnseignantSectionController {
 
-    private final NoteEnseignantSectionServices enseignantSectionServices;
+    private final NoteEnseignantSectionServices noteEnseignantSectionServices;
 
     @Autowired
     public NoteEnseignantSectionController(NoteEnseignantSectionServices enseignantSectionServices){
-        this.enseignantSectionServices=enseignantSectionServices;
+        this.noteEnseignantSectionServices=enseignantSectionServices;
     }
 
-    @GetMapping(path="{enseignantId}")
-    public Section getSection(@PathVariable("enseignantId") Long userId){
-        return enseignantSectionServices.getSection(userId);
+
+    // -------------------------------------- Haithem + Yassine + Nawar --------------------------------------
+    @GetMapping(path="/{id_enseignant}")
+    public List<Map<String,Object>> getSectionAndClasses(@PathVariable("id_enseignant") Long userId) {
+        return noteEnseignantSectionServices.getSectionAndClasses(userId);
     }
+
+    
+    // -------------------------------------- Mazen + Ibrahim --------------------------------------
+
+
+
+    // ------------------------------------- Belhassen ---------------------------------------------
+
+
 
 
 

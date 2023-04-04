@@ -1,17 +1,21 @@
 package com.example.demo.gestionNote.EnseignantSection;
 
-import com.example.demo.Doa.SectionRepository;
-import com.example.demo.entities.Section;
+import com.example.demo.Doa.EnseignantMatiereRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
 public class NoteEnseignantSectionServices {
-    private final SectionRepository sectionRepository;
+    private final EnseignantMatiereRepository enseignantMatiereRepository;
 
-    public Section getSection(Long userId) {
-        Section s=sectionRepository.noteFindSectionByIdEnseignant(userId).orElseThrow(()->new IllegalStateException(("Enseignant n'existe pas")));
+    // -------------------------------------- Haithem + Yassine + Nawar --------------------------------------
+    public List<Map<String,Object>> getSectionAndClasses(Long userId) {
+        List<Map<String,Object>> s= enseignantMatiereRepository.noteFindSectionAndClassesByEnseignantId(userId);
         return s;
     }
+
 }
