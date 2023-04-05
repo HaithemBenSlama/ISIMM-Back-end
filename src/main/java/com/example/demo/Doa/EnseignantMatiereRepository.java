@@ -18,8 +18,6 @@ public interface EnseignantMatiereRepository extends JpaRepository<EnseignantMat
             "FROM EnseignantMatiere em JOIN Matiere m ON m.idMatiere=em.matiere " +
             "JOIN Section s ON s.semestre.idSemestre=em.semestre.idSemestre " +
             "WHERE em.enseignant.id =:id_enseignant and em.groupType != 1")
-
-
     List<Map<String,Object>> noteFindSectionAndClassesByEnseignantId(Long id_enseignant);
 
 
