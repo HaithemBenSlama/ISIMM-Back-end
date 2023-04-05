@@ -454,6 +454,12 @@ public class DemoApplication {
 		EnseignantMatiere enseignantMatiere6= new EnseignantMatiere(en1,m6,Session.CR,Groups.SECTION, s1.getIdSection());
 		EnseignantMatiere enseignantMatiere7= new EnseignantMatiere(en1,m6,Session.TD,Groups.TD, td1.getIdTd());
 
+		EnseignantMatiere enseignantMatiere29= new EnseignantMatiere(en1,m6,Session.CR,Groups.SECTION, s2.getIdSection());
+		enseignantMatiere29.setSemestre(sem1);
+
+
+
+
 		enseignantMatiere1.setSemestre(sem1);
 		enseignantMatiere2.setSemestre(sem1);
 		enseignantMatiere3.setSemestre(sem1);
@@ -523,7 +529,7 @@ public class DemoApplication {
 		enseignantMatiere.save(enseignantMatiere19);enseignantMatiere.save(enseignantMatiere20);enseignantMatiere.save(enseignantMatiere21);
 		enseignantMatiere.save(enseignantMatiere22);enseignantMatiere.save(enseignantMatiere23);enseignantMatiere.save(enseignantMatiere24);
 		enseignantMatiere.save(enseignantMatiere25);enseignantMatiere.save(enseignantMatiere26);enseignantMatiere.save(enseignantMatiere27);
-		enseignantMatiere.save(enseignantMatiere28);
+		enseignantMatiere.save(enseignantMatiere28);enseignantMatiere.save(enseignantMatiere29);
 
 
 
