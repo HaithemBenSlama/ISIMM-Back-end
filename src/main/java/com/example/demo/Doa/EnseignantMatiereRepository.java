@@ -16,8 +16,10 @@ public interface EnseignantMatiereRepository extends JpaRepository<EnseignantMat
     // -------------------------------------- Haithem + Yassine + Nawar --------------------------------------
     @Query("Select new map( em.idEnseignantMatiere as idEnseignantMatiere,em.groupId as groupId,em.groupType as groupType,em.session as session,em.matiere.idMatiere as idMatiere,m.name as nameMatiere,s.idSection as idSection,s.name as nameSection,em.semestre.idSemestre as idSemestre,em.semestre.name as nameSemestre)" +
             "FROM EnseignantMatiere em JOIN Matiere m ON m.idMatiere=em.matiere " +
-            "JOIN Section s ON s.idSection=em.semestre.idSemestre " +
+            "JOIN Section s ON s.semestre.idSemestre=em.semestre.idSemestre " +
             "WHERE em.enseignant.id =:id_enseignant and em.groupType != 1")
+
+
     List<Map<String,Object>> noteFindSectionAndClassesByEnseignantId(Long id_enseignant);
 
 
