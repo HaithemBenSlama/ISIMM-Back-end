@@ -15,7 +15,9 @@ public class NoteEnseignantServices {
         List<Map<String,Object>> s;
         if(type==2)
             s= noteRepository.noteFindListeEtudiantAndNotesForTp(id_enseignant,group_id,id_semestre,id_matiere);
-        else
+        else if (type==1) {
+            s=noteRepository.noteFindListeEtudiantAndNotesForTd(id_enseignant,group_id,id_semestre,id_matiere);
+        } else
             s=noteRepository.noteFindListeEtudiantAndNotesForSection(id_enseignant,group_id,id_semestre,id_matiere);
         return s;
     }

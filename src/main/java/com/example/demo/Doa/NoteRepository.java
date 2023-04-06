@@ -23,7 +23,7 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
             "WHERE n.enseingant.id=:id_enseignant " +
             "AND n.semestre.idSemestre=:id_semestre " +
             "AND n.matiere.idMatiere=:id_matiere " +
-            "AND n.type!=2 ) AS nr " +
+            "AND n.type=0 OR n.type=1) AS nr " +
             "ON nr.ei=er.i")
     List<Map<String,Object>> noteFindListeEtudiantAndNotesForSection(
             Long id_enseignant,
@@ -44,6 +44,24 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
             "ON nr.ei=er.id " +
             "WHERE er.tp.idTp=:group_id")
     List<Map<String,Object>> noteFindListeEtudiantAndNotesForTp(
+            Long id_enseignant,
+            Long group_id,
+            Long id_semestre,
+            Long id_matiere
+    );
+
+    @Query("Select new map(er.id as idEtudiant,er.cin as cinEtudiant,er.nom as nomEtudiant," +
+            "er.prenom as prenomEtudiant,nr.note as note,nr.t as typeNote) " +
+            "FROM Etudiant er " +
+            "LEFT JOIN " +
+            "(SELECT n.etudiant.id as ei,n.note as note,n.type as t " +
+            "FROM Note n WHERE n.enseingant.id=:id_enseignant " +
+            "AND n.semestre.idSemestre=:id_semestre " +
+            "AND n.matiere.idMatiere=:id_matiere " +
+            "AND n.type=3) AS nr " +
+            "ON nr.ei=er.id " +
+            "WHERE er.td.idTd=:group_id")
+    List<Map<String,Object>> noteFindListeEtudiantAndNotesForTd(
             Long id_enseignant,
             Long group_id,
             Long id_semestre,
