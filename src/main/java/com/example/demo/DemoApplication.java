@@ -11,8 +11,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -116,7 +118,7 @@ public class DemoApplication {
 		Matiere m4=new Matiere("Techniques de construction d’analyseurs lexico-syntaxiques",3F,1.5F,60,20,20,0,5122,22,0,22,0,0,r1,u2);
 
 		Matiere m5=new Matiere("Applications logicielles d'entreprise",2F,1F,50,20,30,0,5131,22,0,22,0,0,r1,u3);
-		Matiere m6=new Matiere("Modélisation UML/OCL",2F,1F,60,20,20,0,0,5132,22,0,0,22,r1,u3);
+		Matiere m6=new Matiere("Modélisation UML/OCL",2F,1F,60,20,20,0,5132,22,0,0,0,22,r1,u3);
 
 		Matiere m7=new Matiere("Programmation Web avancée",3F,1.5F,50,20,30,0,5141,22,0,22,0,0,r1,u4);
 		Matiere m8=new Matiere("Programmation mobile",2F,1.5F,50,20,30,0,5142,22,0,22,0,0,r1,u4);
@@ -163,11 +165,19 @@ public class DemoApplication {
 		Niveau niveau1= new Niveau("1ére année",new HashSet<Semestre>());
 		niveau.save(niveau1);
 
+		Niveau niveauCPI1= new Niveau("1ére annéé",new HashSet<Semestre>());
+		niveau.save(niveauCPI1);
+
 		Semestre sem1=new Semestre("Semestre 1", niveau1,new HashSet<Unite>());
 		semestre.save(sem1);
 
+		Semestre sem1CPI1=new Semestre("Semestre 1", niveauCPI1,new HashSet<Unite>());
+		semestre.save(sem1CPI1);
+
 
 		niveau1.addSemestre(sem1);
+		niveauCPI1.addSemestre(sem1CPI1);
+
 
 		u1.addSemestre(sem1);
 		u2.addSemestre(sem1);
@@ -175,31 +185,59 @@ public class DemoApplication {
 		u4.addSemestre(sem1);
 		u5.addSemestre(sem1);
 
+		u1.addSemestre(sem1CPI1);
+		u2.addSemestre(sem1CPI1);
+		u3.addSemestre(sem1CPI1);
+
+
 		sem1.addUnite(u1);
 		sem1.addUnite(u2);
 		sem1.addUnite(u3);
 		sem1.addUnite(u4);
 		sem1.addUnite(u5);
 
+		sem1CPI1.addUnite(u1);
+		sem1CPI1.addUnite(u2);
+		sem1CPI1.addUnite(u3);
 
 
-		Section s1= new Section("Section 1",sem1,new HashSet<TD>());
+
+		Section s1= new Section("ING_INF_1",sem1,new HashSet<TD>());
 		section.save(s1);
+
+		Section s2= new Section("CPI1",sem1CPI1,new HashSet<TD>());
+		section.save(s2);
 
 		TD td1= new TD("TD1",s1,new HashSet<TP>(),new HashSet<Etudiant>());
 		td.save(td1);
+
+		TD td2= new TD("TD2",s1,new HashSet<TP>(),new HashSet<Etudiant>());
+		td.save(td2);
+
+		TD td1CPI1= new TD("TD1",s2,new HashSet<TP>(),new HashSet<Etudiant>());
+		td.save(td1CPI1);
 
 
 		TP tp1= new TP("TP1",td1);
 
 		TP tp2= new TP("TP2",td1);
-		tp.save(tp1);tp.save(tp2);
+		TP tp3= new TP("TP3",td2);
+		tp.save(tp1);tp.save(tp2);tp.save(tp3);
+
+		TP tp1CPI1= new TP("TP1",td1CPI1);
+		TP tp2CPI1= new TP("TP2",td1CPI1);
+		tp.save(tp1CPI1);tp.save(tp2CPI1);
 
 		td1.addTp(tp1);
 		td1.addTp(tp2);
+		td2.addTp(tp3);
+
+		td1CPI1.addTp(tp1CPI1);
+		td1CPI1.addTp(tp2CPI1);
 
 
 		s1.addTd(td1);
+		s2.addTd(td1CPI1);
 
 		Etudiant e1= new Etudiant("13507341","Abassi","Ghada",new Date(), Sexe.FEMME,"Monastir","123456789","Ghada@gmail.com","23569852",22,td1,tp1);
 		Etudiant e2= new Etudiant("14009108","Ben Abdallah","Syrine",new Date(), Sexe.FEMME,"Monastir","123456789","syrine@gmail.com","24569321",22,td1,tp1);
@@ -228,29 +266,98 @@ public class DemoApplication {
 		Etudiant e25= new Etudiant("09643569","Tayari","Belhassen",new Date(), Sexe.HOMME,"Monastir","123456789","belhassen@gmail.com","20324571",22,td1,tp2);
 		Etudiant e26= new Etudiant("11152975","Trabelsi","Ibrahim",new Date(), Sexe.HOMME,"Monastir","123456789","ibrahim@gmail.com","29864523",22,td1,tp2);
 		Etudiant e27= new Etudiant("14011853","Zahaf","Ahmed",new Date(), Sexe.HOMME,"Monastir","123456789","ahmed@gmail.com","55693285",22,td1,tp2);
+		Etudiant e28 = new Etudiant("14011801", "Murray", "Audrey", new Date(), Sexe.FEMME, "Sfax", "123456789", "murray_audrey@gmail.com", "52671928", 21, td2, tp3);
+		Etudiant e29 = new Etudiant("14011802", "Hill", "Cameron", new Date(), Sexe.HOMME, "Tunis", "123456789", "hill_cameron@gmail.com", "53102846", 20, td2, tp3);
+		Etudiant e30 = new Etudiant("14011803", "Scott", "Naomi", new Date(), Sexe.FEMME, "Gabes", "123456789", "scott_naomi@gmail.com", "55679012", 23, td2, tp3);
+		Etudiant e31 = new Etudiant("14011804", "Watson", "Louis", new Date(), Sexe.HOMME, "Sousse", "123456789", "watson_louis@gmail.com", "55371928", 20, td2, tp3);
+		Etudiant e32 = new Etudiant("14011805", "Black", "Evelyn", new Date(), Sexe.FEMME, "Nabeul", "123456789", "black_evelyn@gmail.com", "52341027", 21, td2, tp3);
+		Etudiant e33 = new Etudiant("14011806", "Reed", "Evan", new Date(), Sexe.HOMME, "Bizerte", "123456789", "reed_evan@gmail.com", "57021536", 22, td2, tp3);
+		Etudiant e34 = new Etudiant("14011807", "Gonzalez", "Makayla", new Date(), Sexe.FEMME, "Sfax", "123456789", "gonzalez_makayla@gmail.com", "55571929", 20, td2, tp3);
+		Etudiant e35 = new Etudiant("14011808", "Parker", "Avery", new Date(), Sexe.HOMME, "Tunis", "123456789", "parker_avery@gmail.com", "56901347", 21, td2, tp3);
+		Etudiant e36 = new Etudiant("14011809", "Butler", "Micah", new Date(), Sexe.HOMME, "Gabes", "123456789", "butler_micah@gmail.com", "53621904", 20, td2, tp3);
+		Etudiant e37 = new Etudiant("14011810", "Gomez", "Genesis", new Date(), Sexe.FEMME, "Sousse", "123456789", "gomez_genesis@gmail.com", "51236890", 22, td2, tp3);
+		Etudiant e38 = new Etudiant("14011811", "Cruz", "Julian", new Date(), Sexe.HOMME, "Nabeul", "123456789", "cruz_julian@gmail.com", "53671922", 23, td2, tp3);
+		Etudiant e39 = new Etudiant("14011812", "Bailey", "Rowan", new Date(), Sexe.HOMME, "Bizerte", "123456789", "bailey_rowan@gmail.com", "56371028", 20, td2, tp3);
+		Etudiant e40 = new Etudiant("14011856", "Collins", "Olivia", new Date(), Sexe.FEMME, "Tunis", "123456789", "collins_olivia@gmail.com", "55693285", 21, td2, tp3);
+		Etudiant e41 = new Etudiant("14011857", "Richardson", "Nicholas", new Date(), Sexe.HOMME, "Sousse", "123456789", "richardson_nicholas@gmail.com", "55693285", 23, td2, tp3);
+		Etudiant e42 = new Etudiant("14011858", "Graham", "Caroline", new Date(), Sexe.FEMME, "Sfax", "123456789", "graham_caroline@gmail.com", "55693285", 20, td2, tp3);
 
-		etudiant.save(e1);etudiant.save(e2);etudiant.save(e3);etudiant.save(e4);etudiant.save(e5);etudiant.save(e6);etudiant.save(e7);
-		etudiant.save(e8);etudiant.save(e9);etudiant.save(e10);etudiant.save(e11);etudiant.save(e12);etudiant.save(e13);etudiant.save(e14);
-		etudiant.save(e15);etudiant.save(e16);etudiant.save(e17);etudiant.save(e18);etudiant.save(e19);etudiant.save(e20);etudiant.save(e21);
-		etudiant.save(e22);etudiant.save(e23);etudiant.save(e24);etudiant.save(e25);etudiant.save(e26);etudiant.save(e27);
 
+		Etudiant e43 = new Etudiant("14011853", "Garcia", "Sophia", new Date(), Sexe.HOMME, "Monastir", "123456789", "garcia_sophia@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e44 = new Etudiant("14011853", "Martinez", "Noah", new Date(), Sexe.HOMME, "Monastir", "123456789", "martinez_noah@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e45 = new Etudiant("14011853", "Lopez", "Liam", new Date(), Sexe.HOMME, "Monastir", "123456789", "lopez_liam@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e46 = new Etudiant("14011853", "Gonzalez", "Olivia", new Date(), Sexe.FEMME, "Monastir", "123456789", "gonzalez_olivia@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e47 = new Etudiant("14011853", "Rodriguez", "Emma", new Date(), Sexe.FEMME, "Monastir", "123456789", "rodriguez_emma@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e48 = new Etudiant("14011853", "Hernandez", "Ava", new Date(), Sexe.FEMME, "Monastir", "123456789", "hernandez_ava@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e49 = new Etudiant("14011853", "Davis", "Isabella", new Date(), Sexe.FEMME, "Monastir", "123456789", "davis_isabella@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e50 = new Etudiant("14011853", "Flores", "Mia", new Date(), Sexe.FEMME, "Monastir", "123456789", "flores_mia@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e51 = new Etudiant("14011853", "Rivera", "Charlotte", new Date(), Sexe.FEMME, "Monastir", "123456789", "rivera_charlotte@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e52 = new Etudiant("14011853", "Lee", "Amelia", new Date(), Sexe.FEMME, "Monastir", "123456789", "lee_amelia@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e53 = new Etudiant("14011853", "Allen", "Evelyn", new Date(), Sexe.FEMME, "Monastir", "123456789", "allen_evelyn@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e54 = new Etudiant("14011853", "Wright", "Abigail", new Date(), Sexe.FEMME, "Monastir", "123456789", "wright_abigail@gmail.com", "55693285",22,td1CPI1,tp1CPI1);
+		Etudiant e55 = new Etudiant("14011853", "Baker", "Emily", new Date(), Sexe.FEMME, "Monastir", "123456789", "baker_emily@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e56 = new Etudiant("14011853", "Foster", "Harper", new Date(), Sexe.FEMME, "Monastir", "123456789", "foster_harper@gmail.com", "55693285", 22, td1CPI1, tp1CPI1);
+		Etudiant e57 = new Etudiant("14011853", "Gomez", "Sophie", new Date(), Sexe.FEMME, "Monastir", "123456789", "gomez_sophie@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
+		Etudiant e58 = new Etudiant("14011853", "Howard", "Avery", new Date(), Sexe.HOMME, "Monastir", "123456789", "howard_avery@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
+		Etudiant e59 = new Etudiant("14011853", "Jackson", "Carter", new Date(), Sexe.HOMME, "Monastir", "123456789", "jackson_carter@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
+		Etudiant e60 = new Etudiant("14011853", "Kelly", "Mason", new Date(), Sexe.HOMME, "Monastir", "123456789", "kelly_mason@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
+		Etudiant e61 = new Etudiant("14011853", "Lambert", "Wyatt", new Date(), Sexe.HOMME, "Monastir", "123456789", "lambert_wyatt@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
+		Etudiant e62 = new Etudiant("14011853", "Murphy", "Henry", new Date(), Sexe.HOMME, "Monastir", "123456789", "murphy_henry@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
+		Etudiant e63 = new Etudiant("14011853", "Nelson", "Ethan", new Date(), Sexe.HOMME, "Monastir", "123456789", "nelson_ethan@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
+		Etudiant e64 = new Etudiant("14011853", "Owens", "Oliver", new Date(), Sexe.HOMME, "Monastir", "123456789", "owens_oliver@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
+		Etudiant e65 = new Etudiant("14011853", "Peterson", "Logan", new Date(), Sexe.HOMME, "Monastir", "123456789", "peterson_logan@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
+		Etudiant e66 = new Etudiant("14011853", "Reid", "William", new Date(), Sexe.HOMME, "Monastir", "123456789", "reid_william@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
+		Etudiant e67 = new Etudiant("14011853", "Stewart", "Jack", new Date(), Sexe.HOMME, "Monastir","123456789", "reid_william@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
+		Etudiant e68 = new Etudiant("14011853", "Turner", "Benjamin", new Date(), Sexe.HOMME, "Monastir", "123456789", "turner_benjamin@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
+		Etudiant e69 = new Etudiant("14011853", "Walker", "Luke", new Date(), Sexe.HOMME, "Monastir", "123456789", "walker_luke@gmail.com", "55693285", 22, td1CPI1, tp2CPI1);
 
+		List<Etudiant> etudiantList = Arrays.asList(e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14,e15,e16,e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32,e33,e34,e35,e36,e37,e38,e39,e40,e41,e42,e43,e44,e45,e46,e47,e48,e49,e50,e51,e52,e53,e54,e56,e57,e58,e59,e60,e61,e62,e63,e64,e65,e66,e67,e68,e69);
+		etudiant.saveAll(etudiantList);
 
 		td1.addEtudiant(e1);td1.addEtudiant(e2);td1.addEtudiant(e3);td1.addEtudiant(e4);td1.addEtudiant(e5);td1.addEtudiant(e6);td1.addEtudiant(e7);
 		td1.addEtudiant(e8);td1.addEtudiant(e9);td1.addEtudiant(e10);td1.addEtudiant(e11);td1.addEtudiant(e12);td1.addEtudiant(e13);td1.addEtudiant(e14);
 		td1.addEtudiant(e15);td1.addEtudiant(e16);td1.addEtudiant(e17);td1.addEtudiant(e18);td1.addEtudiant(e19);td1.addEtudiant(e20);td1.addEtudiant(e21);
 		td1.addEtudiant(e22);td1.addEtudiant(e23);td1.addEtudiant(e24);td1.addEtudiant(e25);td1.addEtudiant(e26);td1.addEtudiant(e27);
 
+		td2.addEtudiant(e28);td2.addEtudiant(e29);td2.addEtudiant(e30);td2.addEtudiant(e31);td2.addEtudiant(e32);td2.addEtudiant(e33);td2.addEtudiant(e34);
+		td2.addEtudiant(e35);td2.addEtudiant(e36);td2.addEtudiant(e37);td2.addEtudiant(e38);td2.addEtudiant(e39);td2.addEtudiant(e40);td2.addEtudiant(e41);
+		td2.addEtudiant(e42);
+
+		td1CPI1.addEtudiant(e43);td1CPI1.addEtudiant(e44);td1CPI1.addEtudiant(e45);td1CPI1.addEtudiant(e46);td1CPI1.addEtudiant(e47);td1CPI1.addEtudiant(e48);td1CPI1.addEtudiant(e49);
+		td1CPI1.addEtudiant(e50);td1CPI1.addEtudiant(e51);td1CPI1.addEtudiant(e52);td1CPI1.addEtudiant(e53);td1CPI1.addEtudiant(e54);td1CPI1.addEtudiant(e55);td1CPI1.addEtudiant(e56);
+		td1CPI1.addEtudiant(e57);td1CPI1.addEtudiant(e58);td1CPI1.addEtudiant(e59);td1CPI1.addEtudiant(e60);td1CPI1.addEtudiant(e61);td1CPI1.addEtudiant(e62);td1CPI1.addEtudiant(e63);
+		td1CPI1.addEtudiant(e64);td1CPI1.addEtudiant(e65);td1CPI1.addEtudiant(e66);td1CPI1.addEtudiant(e67);td1CPI1.addEtudiant(e68);td1CPI1.addEtudiant(e69);
+
+
+
 		tp1.addEtudiant(e1);tp1.addEtudiant(e2);tp1.addEtudiant(e3);tp1.addEtudiant(e4);tp1.addEtudiant(e5);tp1.addEtudiant(e6);tp1.addEtudiant(e7);
 		tp1.addEtudiant(e8);tp1.addEtudiant(e9);tp1.addEtudiant(e10);tp1.addEtudiant(e11);tp1.addEtudiant(e12);tp1.addEtudiant(e13);
+
 
 		tp2.addEtudiant(e14);tp2.addEtudiant(e15);tp2.addEtudiant(e16);tp2.addEtudiant(e17);tp2.addEtudiant(e18);tp2.addEtudiant(e19);tp2.addEtudiant(e20);
 		tp2.addEtudiant(e21);tp2.addEtudiant(e22);tp2.addEtudiant(e23);tp2.addEtudiant(e24);tp2.addEtudiant(e25);tp2.addEtudiant(e26);tp2.addEtudiant(e27);
 
+		tp3.addEtudiant(e28);tp3.addEtudiant(e29);tp3.addEtudiant(e30);tp3.addEtudiant(e31);tp3.addEtudiant(e32);tp3.addEtudiant(e33);tp3.addEtudiant(e34);
+		tp3.addEtudiant(e35);tp3.addEtudiant(e36);tp3.addEtudiant(e37);tp3.addEtudiant(e38);tp3.addEtudiant(e39);tp3.addEtudiant(e40);tp3.addEtudiant(e41);
+		tp3.addEtudiant(e42);
+
+		tp1CPI1.addEtudiant(e43);tp1CPI1.addEtudiant(e44);tp1CPI1.addEtudiant(e45);tp1CPI1.addEtudiant(e46);tp1CPI1.addEtudiant(e47);tp1CPI1.addEtudiant(e48);tp1CPI1.addEtudiant(e49);
+		tp1CPI1.addEtudiant(e50);tp1CPI1.addEtudiant(e51);tp1CPI1.addEtudiant(e52);tp1CPI1.addEtudiant(e53);tp1CPI1.addEtudiant(e54);tp1CPI1.addEtudiant(e55);tp1CPI1.addEtudiant(e56);
+
+
+		tp2CPI1.addEtudiant(e57);tp2CPI1.addEtudiant(e58);tp2CPI1.addEtudiant(e59);tp2CPI1.addEtudiant(e60);tp2CPI1.addEtudiant(e61);tp2CPI1.addEtudiant(e62);tp2CPI1.addEtudiant(e63);
+		tp2CPI1.addEtudiant(e64);tp2CPI1.addEtudiant(e65);tp2CPI1.addEtudiant(e66);tp2CPI1.addEtudiant(e67);tp2CPI1.addEtudiant(e68);tp2CPI1.addEtudiant(e69);
+
 		Diplome diplome1 = new Diplome("Ingenierie en Genie Logiciel", new HashSet<Niveau>());
+
+		Diplome diplomeCPI1 = new Diplome("Préparatoire Integré en Informatique", new HashSet<Niveau>());
+
 		diplome1.addNiveau(niveau1);
+		diplomeCPI1.addNiveau(niveauCPI1);
 		diplome.save(diplome1);
+		diplome.save(diplomeCPI1);
 		niveau1.setDiplome(diplome1);
+		niveauCPI1.setDiplome(diplomeCPI1);
 
 		Note n1=new Note(m6,e1,en1, TypeDevoir.EXAM,14.5F,new Date());
 		Note n2=new Note(m6,e2,en1, TypeDevoir.EXAM,14.5F,new Date());
@@ -308,6 +415,39 @@ public class DemoApplication {
 		Note n53=new Note(m6,e26,en1, TypeDevoir.DS,13.5F,new Date());
 		Note n54=new Note(m6,e27,en1, TypeDevoir.DS,10.5F,new Date());
 
+		n1.setSemestre(sem1);
+		n2.setSemestre(sem1);
+		n3.setSemestre(sem1);
+		n4.setSemestre(sem1);
+		n5.setSemestre(sem1);
+		n6.setSemestre(sem1);
+		n7.setSemestre(sem1);
+		n8.setSemestre(sem1);
+		n9.setSemestre(sem1);
+		n10.setSemestre(sem1);
+		n11.setSemestre(sem1);
+		n12.setSemestre(sem1);
+		n13.setSemestre(sem1);
+		n14.setSemestre(sem1);
+		n15.setSemestre(sem1);
+		n16.setSemestre(sem1);
+		n17.setSemestre(sem1);
+		n18.setSemestre(sem1);
+		n19.setSemestre(sem1);
+		n20.setSemestre(sem1);
+		n21.setSemestre(sem1);
+		n22.setSemestre(sem1);
+		n23.setSemestre(sem1);
+		n24.setSemestre(sem1);
+		n25.setSemestre(sem1);
+		n26.setSemestre(sem1);
+		n27.setSemestre(sem1);
+		n28.setSemestre(sem1);
+
+
+
+
+
 
 
 		note.save(n1);note.save(n2);note.save(n3);note.save(n4);note.save(n5);note.save(n6);note.save(n7);note.save(n8);
@@ -339,6 +479,9 @@ public class DemoApplication {
 		Reclamation reclamation2 = new Reclamation(e25,new Date(),"Double correction dans cette matiere","Pending",5112,TypeDevoir.DS);
 		Reclamation reclamation3 = new Reclamation(e14,new Date(),"Je veux verifier ma copie du devoir","Pending",5121,TypeDevoir.DS);
 
+		reclamation1.setEnseignant(en2);
+		reclamation2.setEnseignant(en12);
+		reclamation3.setEnseignant(en5);
 
 
 		reclamation.save(reclamation1);reclamation.save(reclamation2);
@@ -353,14 +496,32 @@ public class DemoApplication {
 		EnseignantMatiere enseignantMatiere6= new EnseignantMatiere(en1,m6,Session.CR,Groups.SECTION, s1.getIdSection());
 		EnseignantMatiere enseignantMatiere7= new EnseignantMatiere(en1,m6,Session.TD,Groups.TD, td1.getIdTd());
 
+		enseignantMatiere1.setSemestre(sem1);
+		enseignantMatiere2.setSemestre(sem1);
+		enseignantMatiere3.setSemestre(sem1);
+		enseignantMatiere4.setSemestre(sem1);
+		enseignantMatiere5.setSemestre(sem1);
+		enseignantMatiere6.setSemestre(sem1);
+		enseignantMatiere7.setSemestre(sem1);
+
+
 
 		EnseignantMatiere enseignantMatiere8= new EnseignantMatiere(en2,m1, Session.CR,Groups.SECTION, s1.getIdSection());
 		EnseignantMatiere enseignantMatiere9= new EnseignantMatiere(en2,m1, Session.TP,Groups.TP,tp1.getIdTp());
 		EnseignantMatiere enseignantMatiere10= new EnseignantMatiere(en2,m1, Session.TP,Groups.TP,tp2.getIdTp());
 
+		enseignantMatiere8.setSemestre(sem1);
+		enseignantMatiere9.setSemestre(sem1);
+		enseignantMatiere10.setSemestre(sem1);
+
+
 		EnseignantMatiere enseignantMatiere11= new EnseignantMatiere(en3,m5,Session.TP,Groups.TP, tp1.getIdTp());
 		EnseignantMatiere enseignantMatiere12= new EnseignantMatiere(en3,m5,Session.TP,Groups.TP, tp2.getIdTp());
 		EnseignantMatiere enseignantMatiere13= new EnseignantMatiere(en3,m5,Session.CR,Groups.SECTION, s1.getIdSection());
+
+		enseignantMatiere11.setSemestre(sem1);
+		enseignantMatiere12.setSemestre(sem1);
+		enseignantMatiere13.setSemestre(sem1);
 
 
 		EnseignantMatiere enseignantMatiere14= new EnseignantMatiere(en4,m11,Session.TD,Groups.TD,td1.getIdTd());
@@ -395,6 +556,16 @@ public class DemoApplication {
 		EnseignantMatiere enseignantMatiere28= new EnseignantMatiere(en12,m2,Session.TP,Groups.TP, tp2.getIdTp());
 
 
+		EnseignantMatiere enseignantMatiere29= new EnseignantMatiere(en1,m6,Session.CR,Groups.SECTION, s2.getIdSection());
+		EnseignantMatiere enseignantMatiere30= new EnseignantMatiere(en1,m4,Session.CR,Groups.SECTION, s2.getIdSection());
+		EnseignantMatiere enseignantMatiere31= new EnseignantMatiere(en1,m6,Session.TP,Groups.TP, tp2CPI1.getIdTp());
+		enseignantMatiere29.setSemestre(sem1CPI1);
+		enseignantMatiere30.setSemestre(sem1CPI1);
+		enseignantMatiere31.setSemestre(sem1CPI1);
+
+
+
+
 		enseignantMatiere.save(enseignantMatiere1);enseignantMatiere.save(enseignantMatiere2);enseignantMatiere.save(enseignantMatiere3);
 		enseignantMatiere.save(enseignantMatiere4);enseignantMatiere.save(enseignantMatiere5);enseignantMatiere.save(enseignantMatiere6);
 		enseignantMatiere.save(enseignantMatiere7);enseignantMatiere.save(enseignantMatiere8);enseignantMatiere.save(enseignantMatiere9);
@@ -405,6 +576,7 @@ public class DemoApplication {
 		enseignantMatiere.save(enseignantMatiere22);enseignantMatiere.save(enseignantMatiere23);enseignantMatiere.save(enseignantMatiere24);
 		enseignantMatiere.save(enseignantMatiere25);enseignantMatiere.save(enseignantMatiere26);enseignantMatiere.save(enseignantMatiere27);
 		enseignantMatiere.save(enseignantMatiere28);
+		enseignantMatiere.save(enseignantMatiere29);enseignantMatiere.save(enseignantMatiere30);enseignantMatiere.save(enseignantMatiere31);
 
 
 
@@ -439,25 +611,27 @@ public class DemoApplication {
 
 
 		niveau.save(niveau1);
+		niveau.save(niveauCPI1);
 
 
 		semestre.save(sem1);
+		semestre.save(sem1CPI1);
+
 
 		section.save(s1);
+		section.save(s2);
 
 		td.save(td1);
 
 
 		tp.save(tp1);tp.save(tp2);
+		tp.save(tp1CPI1);tp.save(tp2CPI1);
 
 
-		etudiant.save(e1);etudiant.save(e2);etudiant.save(e3);etudiant.save(e4);etudiant.save(e5);etudiant.save(e6);etudiant.save(e7);
-		etudiant.save(e8);etudiant.save(e9);etudiant.save(e10);etudiant.save(e11);etudiant.save(e12);etudiant.save(e13);etudiant.save(e14);
-		etudiant.save(e15);etudiant.save(e16);etudiant.save(e17);etudiant.save(e18);etudiant.save(e19);etudiant.save(e20);etudiant.save(e21);
-		etudiant.save(e22);etudiant.save(e23);etudiant.save(e24);etudiant.save(e25);etudiant.save(e26);etudiant.save(e27);
-
+		etudiant.saveAll(etudiantList);
 
 		diplome.save(diplome1);
+		diplome.save(diplomeCPI1);
 
 
 		note.save(n1);note.save(n2);note.save(n3);note.save(n4);note.save(n5);note.save(n6);note.save(n7);note.save(n8);
