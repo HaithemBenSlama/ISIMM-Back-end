@@ -5,6 +5,7 @@ import com.example.demo.entities.Reclamation;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,15 +14,17 @@ public class NoteEnseignantReclamationServices {
 
     private ReclamationRepository reclamationRepository;
 
-    public Optional<Reclamation> getReclamationsByEnseignant(Long enseignantId){
-        return Optional.ofNullable(reclamationRepository.noteFindReclamationEnseignantByEnseignantId(enseignantId).orElseThrow(() -> new IllegalStateException("Reclamation n'existe pas")));
+    public List<Reclamation> getReclamationsByEnseignant(Long enseignantId){
+        return reclamationRepository.noteFindReclamationEnseignantByEnseignantId(enseignantId);
     }
 
-    public Optional<Reclamation> getReclamationsByMatiere(Long idMatiere){
-        return Optional.ofNullable(reclamationRepository.noteFindReclamationEnseignantByCodeMatiere(idMatiere).orElseThrow(() -> new IllegalStateException("Matiere n'existe pas")));
+    public List<Reclamation> getReclamationsByMatiere(Long idMatiere, Long enseignantId){
+        return reclamationRepository.noteFindReclamationEnseignantByCodeMatiere(idMatiere, enseignantId);
     }
 
-    public Optional<Reclamation> getReclamationsByStatut(String statut){
-        return Optional.ofNullable(reclamationRepository.noteFindReclamationEnseignantByStatut(statut).orElseThrow(() -> new IllegalStateException("Statut n'existe pas")));
+    public List<Reclamation> getReclamationsByStatut(String statut, Long enseignantId){
+        return reclamationRepository.noteFindReclamationEnseignantByStatut(statut, enseignantId);
     }
+
+
 }
