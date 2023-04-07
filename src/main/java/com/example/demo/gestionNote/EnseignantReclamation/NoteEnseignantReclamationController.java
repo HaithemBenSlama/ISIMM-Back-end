@@ -5,6 +5,7 @@ import com.example.demo.entities.Reclamation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -19,17 +20,19 @@ public class NoteEnseignantReclamationController {
     }
 
     @GetMapping(path = "/enseignant/{enseignantId}")
-    public Optional<Reclamation> getReclamationsByEnseignant(@PathVariable("enseignantId") Long enseignantId){
+    public List<Reclamation> getReclamationsByEnseignant(@PathVariable("enseignantId") Long enseignantId){
         return reclamationServices.getReclamationsByEnseignant(enseignantId);
     }
 
-    @GetMapping(path = "/matiere/{idMatiere}")
-    public Optional<Reclamation> getReclamationsByMatiere(@PathVariable("idMatiere") Long idMatiere){
-        return reclamationServices.getReclamationsByMatiere(idMatiere);
+    @GetMapping(path = "/matiere/{enseignantId}/{idMatiere}")
+    public List<Reclamation> getReclamationsByMatiere(@PathVariable("idMatiere") Long idMatiere, @PathVariable("enseignantId") Long enseignantId){
+        return reclamationServices.getReclamationsByMatiere(idMatiere, enseignantId);
     }
 
-    @GetMapping(path = "/statut/{statut}")
-    public Optional<Reclamation> getReclamationsByStatut(@PathVariable("statut") String statut){
-        return reclamationServices.getReclamationsByStatut(statut);
+    @GetMapping(path = "/statut/{enseignantId}/{statut}")
+    public List<Reclamation> getReclamationsByStatut(@PathVariable("statut") String statut,@PathVariable("enseignantId") Long enseignantId){
+        return reclamationServices.getReclamationsByStatut(statut,enseignantId);
     }
+
+
 }
