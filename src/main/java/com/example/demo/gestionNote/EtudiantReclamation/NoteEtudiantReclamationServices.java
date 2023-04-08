@@ -60,7 +60,7 @@ public class NoteEtudiantReclamationServices {
         System.out.println(enseignant.getId() + " , " +etudiant.getId() +" , "+ codeMatiere+" , "+typeNote);
         Reclamation reclamation1 = reclamationRepository.noteFindReclamationExists(enseignant.getId(), etudiant.getId(), codeMatiere, typeNote);
         if(reclamation1 != null){
-            throw new IllegalStateException("Reclamation "+ enseignant.getId() + " , "+etudiant.getId()+" , "+codeMatiere+" , "+typeNote+" est existe deja");
+            throw new IllegalStateException("Reclamation du matiere ("+ codeMatiere + ") / "+typeNote + " existe deja");
         }
 
 
@@ -78,13 +78,16 @@ public class NoteEtudiantReclamationServices {
             group = Groups.SECTION;
         }else{
             group = Groups.TP;
-
         }
         Long id =  enseignantRepository.noteFindEnseignantByCodeMatiere(codeMatiere, idEtudiant, group);
         if(id == null){
-            throw new IllegalStateException("Enseignant dont have this Matiere/Note");
+            throw new IllegalStateException("Vérifier votre code matiére/Type Devoir !");
         }
         return id;
+    }
+
+    public List<Map<String,Object>> getReclamationDetails(Long idReclamation){
+        return reclamationRepository.noteFindReclamationDetails(idReclamation);
     }
 
 //    public Long getReclamationsByEns() {

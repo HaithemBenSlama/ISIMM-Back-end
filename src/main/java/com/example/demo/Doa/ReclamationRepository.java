@@ -56,4 +56,12 @@ public interface ReclamationRepository extends JpaRepository<Reclamation, Long> 
     Reclamation noteFindReclamationExists(Long idEnseignant, Long idEtudiant, int codeMatiere, TypeDevoir typeDevoir);
 
 
+    @Query("SELECT new map(r.codeMatiere as codeMatiere,r.idReclamation as idReclamation, r.typeNote as typeNote, r.creationDateTime as dateCreation,r.message as message, r.statut as statut,m.idMatiere as idMatiere,m.code as matiereCode,m.name as nomMatiere,e.id as idEnseignant,e.email as emailEnseignant,e.nom as nomEnseignant,e.prenom as prenomEnseignant,et.id as idEtudiant ,et.cin as cinEtudiant,et.email as emailEtudiant,et.nom as nomEtudiant,et.prenom as prenomEtudiant) \n" +
+            "FROM Reclamation r \n" +
+            "INNER join Etudiant et ON et.id = r.etudiant.id \n" +
+            "INNER JOIN Enseignant e ON e.id = r.enseignant.id\n" +
+            "INNER JOIN Matiere m on m.code = r.codeMatiere\n" +
+            "where r.idReclamation = :idReclamation")
+    List<Map<String,Object>> noteFindReclamationDetails(Long idReclamation);
+
 }

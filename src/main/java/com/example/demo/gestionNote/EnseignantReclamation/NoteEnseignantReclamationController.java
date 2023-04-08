@@ -34,5 +34,26 @@ public class NoteEnseignantReclamationController {
         return reclamationServices.getReclamationsByStatut(statut,enseignantId);
     }
 
+    @PostMapping(path = "/updateReclamation",consumes = "application/json")
+    public void updateReclamationStatus(@RequestBody UpdateStatusBody request){
+        reclamationServices.updateReclamationStatus(request.getIdReclamation(), request.getStatut());
+    }
 
+
+}
+
+
+class UpdateStatusBody {
+    private Long idReclamation;
+    private String statut;
+
+    // getters and setters
+
+    public Long getIdReclamation() {
+        return idReclamation;
+    }
+
+    public String getStatut() {
+        return statut;
+    }
 }

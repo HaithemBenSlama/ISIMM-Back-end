@@ -475,9 +475,9 @@ public class DemoApplication {
 		en1.addNote(n52);en1.addNote(n53);en1.addNote(n54);
 
 
-		Reclamation reclamation1 = new Reclamation(e3,new Date(),"Je suis absent dans ce devoir","Pending",5111,TypeDevoir.DS);
-		Reclamation reclamation2 = new Reclamation(e25,new Date(),"Double correction dans cette matiere","Pending",5112,TypeDevoir.DS);
-		Reclamation reclamation3 = new Reclamation(e14,new Date(),"Je veux verifier ma copie du devoir","Pending",5121,TypeDevoir.DS);
+		Reclamation reclamation1 = new Reclamation(e3,new Date(),"Je suis absent dans ce devoir","Envoyée",5111,TypeDevoir.DS);
+		Reclamation reclamation2 = new Reclamation(e25,new Date(),"Double correction dans cette matiere","Acceptée",5112,TypeDevoir.DS);
+		Reclamation reclamation3 = new Reclamation(e14,new Date(),"Je veux verifier ma copie du devoir","Refusée",5121,TypeDevoir.DS);
 
 		reclamation1.setEnseignant(en2);
 		reclamation2.setEnseignant(en12);

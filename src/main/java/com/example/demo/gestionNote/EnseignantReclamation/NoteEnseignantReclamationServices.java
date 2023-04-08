@@ -2,6 +2,7 @@ package com.example.demo.gestionNote.EnseignantReclamation;
 
 import com.example.demo.Doa.ReclamationRepository;
 import com.example.demo.entities.Reclamation;
+import com.example.demo.entities.enums.TypeDevoir;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,15 @@ public class NoteEnseignantReclamationServices {
 
     public List<Reclamation> getReclamationsByStatut(String statut, Long enseignantId){
         return reclamationRepository.noteFindReclamationEnseignantByStatut(statut, enseignantId);
+    }
+
+    public void updateReclamationStatus(Long reclamationId, String statut){
+       Reclamation r =  reclamationRepository.findById(reclamationId).orElse(null);
+       if(r == null){
+           throw new IllegalStateException("Reclamation N'existe pas");
+       }
+       r.setStatut(statut);
+       reclamationRepository.save(r);
     }
 
 

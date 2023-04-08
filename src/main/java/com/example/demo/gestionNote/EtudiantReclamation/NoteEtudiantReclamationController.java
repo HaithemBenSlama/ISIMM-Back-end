@@ -40,17 +40,10 @@ public class NoteEtudiantReclamationController {
         reclamationServices.saveReclamation(request.getIdEtudiant(), idEnseignant, request.getMessage(), request.getStatut(),request.getCodeMatiere(), request.getTypeNote());
     }
 
-//    @GetMapping(path = "/ens")
-//    public Long getReclamationsByEns(){
-//        return reclamationServices.getReclamationsByEns();
-//    }
-
-
-
-//    @GetMapping(path = "/ens/{id}")
-//    public Optional getEnseignant(@PathVariable("id") Long id){
-//        return reclamationServices.getEnseignant(id);
-//    }
+    @GetMapping(path = "/reclamation/{reclamationId}")
+    public List<Map<String,Object>> getReclamationDetails(@PathVariable("reclamationId") Long reclamationId){
+        return reclamationServices.getReclamationDetails(reclamationId);
+    }
 }
 
 class ReclamationRequest {
