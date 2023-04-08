@@ -16,7 +16,9 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
     @Query(
             value = "SELECT er.id as idEtudiant, er.cin as cinEtudiant, er.nom as nomEtudiant, er.prenom as prenomEtudiant, " +
                     "nr1.note as noteExam, " +
-                    "nr2.note as noteDs " +
+                    "nr2.note as noteDs," +
+                    "nr1.idNoteExam as idNoteExam," +
+                    "nr2.idNoteDs as idNoteDs " +
                     "FROM ( " +
                     "   SELECT e.id as id, e.cin as cin, e.nom as nom, e.prenom as prenom " +
                     "   FROM TD t " +
@@ -25,7 +27,7 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
                     "   WHERE s.id_section = :group_id " +
                     ") AS er " +
                     "LEFT JOIN ( " +
-                    "   SELECT n1.id_etudiant as etudiant_id, n1.note as note, n1.type as type " +
+                    "   SELECT n1.id_etudiant as etudiant_id, n1.note as note, n1.type as type,n1.id_note as idNoteExam " +
                     "   FROM Note n1 " +
                     "   WHERE n1.id_enseingant = :id_enseignant " +
                     "   AND n1.id_semestre = :id_semestre " +
@@ -33,7 +35,7 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
                     "   AND n1.type = 1 " +
                     ") AS nr1 ON nr1.etudiant_id = er.id " +
                     "LEFT JOIN ( " +
-                    "   SELECT n2.id_etudiant as etudiant_id, n2.note as note, n2.type as type " +
+                    "   SELECT n2.id_etudiant as etudiant_id, n2.note as note, n2.type as type, n2.id_note as idNoteDs " +
                     "   FROM Note n2 " +
                     "   WHERE n2.id_enseingant = :id_enseignant " +
                     "   AND n2.id_semestre = :id_semestre " +
@@ -50,10 +52,10 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
     );
 
     @Query("Select new map(er.id as idEtudiant,er.cin as cinEtudiant,er.nom as nomEtudiant," +
-            "er.prenom as prenomEtudiant,nr.note as noteTp,nr.t as typeNote) " +
+            "er.prenom as prenomEtudiant,nr.note as noteTp,nr.t as typeNote, nr.id as idNote) " +
             "FROM Etudiant er " +
             "LEFT JOIN " +
-            "(SELECT n.etudiant.id as ei,n.note as note,n.type as t " +
+            "(SELECT n.idNote as id,n.etudiant.id as ei,n.note as note,n.type as t " +
             "FROM Note n WHERE n.enseingant.id=:id_enseignant " +
             "AND n.semestre.idSemestre=:id_semestre " +
             "AND n.matiere.idMatiere=:id_matiere " +
@@ -68,10 +70,10 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
     );
 
     @Query("Select new map(er.id as idEtudiant,er.cin as cinEtudiant,er.nom as nomEtudiant," +
-            "er.prenom as prenomEtudiant,nr.note as noteOral,nr.t as typeNote) " +
+            "er.prenom as prenomEtudiant,nr.note as noteOral,nr.t as typeNote, nr.id as idNote) " +
             "FROM Etudiant er " +
             "LEFT JOIN " +
-            "(SELECT n.etudiant.id as ei,n.note as note,n.type as t " +
+            "(SELECT n.idNote as id ,n.etudiant.id as ei,n.note as note,n.type as t " +
             "FROM Note n WHERE n.enseingant.id=:id_enseignant " +
             "AND n.semestre.idSemestre=:id_semestre " +
             "AND n.matiere.idMatiere=:id_matiere " +
