@@ -416,11 +416,11 @@ public class DemoApplication {
 		Note n53=new Note(m6,e26,en1, TypeDevoir.DS,13.5F,new Date());
 		Note n54=new Note(m6,e27,en1, TypeDevoir.DS,10.5F,new Date());
 
-		Note n55=new Note(m6,e27,en1, TypeDevoir.TP,19.5F,new Date());
-		Note n56=new Note(m6,e7,en1, TypeDevoir.TP,15.5F,new Date());
+		Note n55=new Note(m4,e27,en1, TypeDevoir.TP,19.5F,new Date());
+		Note n56=new Note(m4,e7,en1, TypeDevoir.TP,15.5F,new Date());
 
-		Note n57=new Note(m6,e27,en1, TypeDevoir.ORAL,14.0F,new Date());
-		Note n58=new Note(m6,e7,en1, TypeDevoir.ORAL,13.75F,new Date());
+		Note n57=new Note(m4,e27,en1, TypeDevoir.ORAL,14.0F,new Date());
+		Note n58=new Note(m4,e7,en1, TypeDevoir.ORAL,13.75F,new Date());
 
 
 		n1.setSemestre(sem1);
