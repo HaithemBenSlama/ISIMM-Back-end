@@ -416,6 +416,13 @@ public class DemoApplication {
 		Note n53=new Note(m6,e26,en1, TypeDevoir.DS,13.5F,new Date());
 		Note n54=new Note(m6,e27,en1, TypeDevoir.DS,10.5F,new Date());
 
+		Note n55=new Note(m6,e27,en1, TypeDevoir.TP,19.5F,new Date());
+		Note n56=new Note(m6,e7,en1, TypeDevoir.TP,15.5F,new Date());
+
+		Note n57=new Note(m6,e27,en1, TypeDevoir.ORAL,14.0F,new Date());
+		Note n58=new Note(m6,e7,en1, TypeDevoir.ORAL,13.75F,new Date());
+
+
 		n1.setSemestre(sem1);
 		n2.setSemestre(sem1);
 		n3.setSemestre(sem1);
@@ -444,6 +451,11 @@ public class DemoApplication {
 		n26.setSemestre(sem1);
 		n27.setSemestre(sem1);
 		n28.setSemestre(sem1);
+		n55.setSemestre(sem1);
+		n56.setSemestre(sem1);
+		n57.setSemestre(sem1);
+		n58.setSemestre(sem1);
+
 
 
 
@@ -457,7 +469,7 @@ public class DemoApplication {
 		note.save(n28);note.save(n29);note.save(n30);note.save(n31);note.save(n32);note.save(n33);note.save(n34);note.save(n35);
 		note.save(n36);note.save(n37);note.save(n38);note.save(n39);note.save(n40);note.save(n41);note.save(n42);note.save(n43);
 		note.save(n44);note.save(n45);note.save(n46);note.save(n47);note.save(n48);note.save(n49);note.save(n50);note.save(n51);
-		note.save(n52);note.save(n53);note.save(n54);
+		note.save(n52);note.save(n53);note.save(n54);note.save(n55);note.save(n56);note.save(n57);note.save(n58);
 
 		e1.addNote(n1);e1.addNote(n28);e2.addNote(n2);e2.addNote(n29);e3.addNote(n3);e3.addNote(n30);e4.addNote(n4);e4.addNote(n31);
 		e5.addNote(n5);e5.addNote(n32);e6.addNote(n6);e6.addNote(n33);e7.addNote(n7);e7.addNote(n34);e8.addNote(n8);e8.addNote(n35);
@@ -466,6 +478,7 @@ public class DemoApplication {
 		e17.addNote(n17);e17.addNote(n44);e18.addNote(n18);e18.addNote(n45);e19.addNote(n19);e19.addNote(n46);e20.addNote(n20);e20.addNote(n47);
 		e21.addNote(n21);e21.addNote(n48);e22.addNote(n22);e22.addNote(n49);e23.addNote(n23);e23.addNote(n50);e24.addNote(n24);e24.addNote(n51);
 		e25.addNote(n25);e25.addNote(n52);e26.addNote(n26);e26.addNote(n53);e27.addNote(n27);e27.addNote(n54);
+		e27.addNote(n55);e7.addNote(n56);e27.addNote(n57);e7.addNote(n58);
 
 		en1.addNote(n1);en1.addNote(n2);en1.addNote(n3);en1.addNote(n4);en1.addNote(n5);en1.addNote(n6);en1.addNote(n7);en1.addNote(n8);
 		en1.addNote(n9);en1.addNote(n10);en1.addNote(n11);en1.addNote(n12);en1.addNote(n13);en1.addNote(n14);en1.addNote(n15);en1.addNote(n16);
@@ -473,7 +486,7 @@ public class DemoApplication {
 		en1.addNote(n28);en1.addNote(n29);en1.addNote(n30);en1.addNote(n31);en1.addNote(n32);en1.addNote(n33);en1.addNote(n34);en1.addNote(n35);
 		en1.addNote(n36);en1.addNote(n37);en1.addNote(n38);en1.addNote(n39);en1.addNote(n40);en1.addNote(n41);en1.addNote(n42);en1.addNote(n43);
 		en1.addNote(n44);en1.addNote(n45);en1.addNote(n46);en1.addNote(n47);en1.addNote(n48);en1.addNote(n49);en1.addNote(n50);en1.addNote(n51);
-		en1.addNote(n52);en1.addNote(n53);en1.addNote(n54);
+		en1.addNote(n52);en1.addNote(n53);en1.addNote(n54);en1.addNote(n55);en1.addNote(n56);en1.addNote(n57);en1.addNote(n55);
 
 
 		Reclamation reclamation1 = new Reclamation(e3,new Date(),"Je suis absent dans ce devoir","Pending",5111,TypeDevoir.DS);
@@ -496,6 +509,7 @@ public class DemoApplication {
 		EnseignantMatiere enseignantMatiere5= new EnseignantMatiere(en1,m9,Session.TP,Groups.TP, tp2.getIdTp());
 		EnseignantMatiere enseignantMatiere6= new EnseignantMatiere(en1,m6,Session.CR,Groups.SECTION, s1.getIdSection());
 		EnseignantMatiere enseignantMatiere7= new EnseignantMatiere(en1,m6,Session.TD,Groups.TD, td1.getIdTd());
+		EnseignantMatiere enseignantMatiere33= new EnseignantMatiere(en1,m6,Session.TD,Groups.TD, td2.getIdTd());
 
 		enseignantMatiere1.setSemestre(sem1);
 		enseignantMatiere2.setSemestre(sem1);
@@ -504,6 +518,7 @@ public class DemoApplication {
 		enseignantMatiere5.setSemestre(sem1);
 		enseignantMatiere6.setSemestre(sem1);
 		enseignantMatiere7.setSemestre(sem1);
+		enseignantMatiere33.setSemestre(sem1);
 
 
 
@@ -578,7 +593,7 @@ public class DemoApplication {
 		enseignantMatiere.save(enseignantMatiere25);enseignantMatiere.save(enseignantMatiere26);enseignantMatiere.save(enseignantMatiere27);
 		enseignantMatiere.save(enseignantMatiere28);
 		enseignantMatiere.save(enseignantMatiere29);enseignantMatiere.save(enseignantMatiere30);enseignantMatiere.save(enseignantMatiere31);
-
+		enseignantMatiere.save(enseignantMatiere33);
 
 
 
@@ -641,7 +656,7 @@ public class DemoApplication {
 		note.save(n28);note.save(n29);note.save(n30);note.save(n31);note.save(n32);note.save(n33);note.save(n34);note.save(n35);
 		note.save(n36);note.save(n37);note.save(n38);note.save(n39);note.save(n40);note.save(n41);note.save(n42);note.save(n43);
 		note.save(n44);note.save(n45);note.save(n46);note.save(n47);note.save(n48);note.save(n49);note.save(n50);note.save(n51);
-		note.save(n52);note.save(n53);note.save(n54);
+		note.save(n52);note.save(n53);note.save(n54);note.save(n55);note.save(n56);note.save(n57);note.save(n58);
 
 		reclamation.save(reclamation1);reclamation.save(reclamation2);
 		reclamation.save(reclamation3);
