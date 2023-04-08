@@ -20,7 +20,7 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
                     "FROM ( " +
                     "   SELECT e.id as id, e.cin as cin, e.nom as nom, e.prenom as prenom " +
                     "   FROM TD t " +
-                    "   JOIN Section s ON s.id_section = t.id_td " +
+                    "   JOIN Section s ON s.id_section = t.tds " +
                     "   JOIN Etudiant e ON e.id_td = t.id_td " +
                     "   WHERE s.id_section = :group_id " +
                     ") AS er " +
@@ -50,7 +50,7 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
     );
 
     @Query("Select new map(er.id as idEtudiant,er.cin as cinEtudiant,er.nom as nomEtudiant," +
-            "er.prenom as prenomEtudiant,nr.note as note,nr.t as typeNote) " +
+            "er.prenom as prenomEtudiant,nr.note as noteTp,nr.t as typeNote) " +
             "FROM Etudiant er " +
             "LEFT JOIN " +
             "(SELECT n.etudiant.id as ei,n.note as note,n.type as t " +
@@ -68,7 +68,7 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
     );
 
     @Query("Select new map(er.id as idEtudiant,er.cin as cinEtudiant,er.nom as nomEtudiant," +
-            "er.prenom as prenomEtudiant,nr.note as note,nr.t as typeNote) " +
+            "er.prenom as prenomEtudiant,nr.note as noteOral,nr.t as typeNote) " +
             "FROM Etudiant er " +
             "LEFT JOIN " +
             "(SELECT n.etudiant.id as ei,n.note as note,n.type as t " +

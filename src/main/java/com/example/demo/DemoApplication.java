@@ -237,6 +237,7 @@ public class DemoApplication {
 
 
 		s1.addTd(td1);
+		s1.addTd(td2);
 		s2.addTd(td1CPI1);
 
 		Etudiant e1= new Etudiant("13507341","Abassi","Ghada",new Date(), Sexe.FEMME,"Monastir","123456789","Ghada@gmail.com","23569852",22,td1,tp1);
