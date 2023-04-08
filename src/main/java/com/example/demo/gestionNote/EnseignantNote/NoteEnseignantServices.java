@@ -1,9 +1,12 @@
 package com.example.demo.gestionNote.EnseignantNote;
 
 import com.example.demo.Doa.NoteRepository;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +22,7 @@ public class NoteEnseignantServices {
             s=noteRepository.noteFindListeEtudiantAndNotesForTd(id_enseignant,group_id,id_semestre,id_matiere);
         } else
             s=noteRepository.noteFindListeEtudiantAndNotesForSection(id_enseignant,group_id,id_semestre,id_matiere);
+
         return s;
     }
 }
