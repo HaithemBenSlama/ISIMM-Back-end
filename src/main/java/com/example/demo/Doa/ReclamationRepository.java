@@ -26,8 +26,8 @@ public interface ReclamationRepository extends JpaRepository<Reclamation, Long> 
 //            "WHERE N.enseingant.id = :enseignantId ")
 
     //Teacher Query
-    @Query("SELECT r.etudiant FROM Reclamation r where r.enseignant.id = :enseignantId")
-    List<Reclamation> noteFindReclamationEnseignantByEnseignantId(Long enseignantId);
+    @Query("SELECT new map(r.etudiant.nom as nomEtudiant , r.idReclamation as idReclamation,r.statut as statut, r.message as message , r.creationDateTime as dateCreation, r.typeNote as typeNote, r.etudiant.prenom as prenomEtudiant, m.name as nomMatiere ) FROM Reclamation r inner join Matiere m ON m.code = r.codeMatiere where r.enseignant.id = :enseignantId")
+    List<Map<String,Object>> noteFindReclamationEnseignantByEnseignantId(Long enseignantId);
 
     @Query("SELECT r FROM Reclamation r WHERE r.codeMatiere = :idMatiere and r.enseignant.id = :enseignantId")
     List<Reclamation> noteFindReclamationEnseignantByCodeMatiere(Long idMatiere, Long enseignantId);

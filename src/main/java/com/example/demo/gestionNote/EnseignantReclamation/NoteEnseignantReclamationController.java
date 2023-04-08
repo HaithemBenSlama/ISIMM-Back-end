@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin
@@ -20,7 +21,7 @@ public class NoteEnseignantReclamationController {
     }
 
     @GetMapping(path = "/enseignant/{enseignantId}")
-    public List<Reclamation> getReclamationsByEnseignant(@PathVariable("enseignantId") Long enseignantId){
+    public List<Map<String,Object>> getReclamationsByEnseignant(@PathVariable("enseignantId") Long enseignantId){
         return reclamationServices.getReclamationsByEnseignant(enseignantId);
     }
 

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -15,7 +16,7 @@ public class NoteEnseignantReclamationServices {
 
     private ReclamationRepository reclamationRepository;
 
-    public List<Reclamation> getReclamationsByEnseignant(Long enseignantId){
+    public List<Map<String,Object>> getReclamationsByEnseignant(Long enseignantId){
         return reclamationRepository.noteFindReclamationEnseignantByEnseignantId(enseignantId);
     }
 
