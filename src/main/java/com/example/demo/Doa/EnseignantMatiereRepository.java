@@ -15,7 +15,7 @@ public interface EnseignantMatiereRepository extends JpaRepository<EnseignantMat
 
     // -------------------------------------- Haithem + Yassine + Nawar --------------------------------------
     @Query("Select new map( em.idEnseignantMatiere as idEnseignantMatiere," +
-            "em.groupId as groupId,em.groupType as groupType," +
+            "em.groupId as groupId,em.groupType as groupType,m.code" +
             "CASE WHEN em.groupType = 2 THEN t.name ELSE NULL END as nameTP," +
             "CASE WHEN em.groupType = 1 THEN td.name ELSE NULL END as nameTD,"+
             "em.session as session,em.matiere.idMatiere as idMatiere," +
