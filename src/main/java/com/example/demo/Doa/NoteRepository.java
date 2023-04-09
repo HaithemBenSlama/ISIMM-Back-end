@@ -87,5 +87,30 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
             Long id_matiere
     );
 
+    //****************************************** Mazen+ Ibrahim  **************************************
+    @Query(nativeQuery = true,value="SELECT unite.code_unite, unite.name AS unite_name, matiere.code, matiere.name AS matiere_name,\n" +
+            "  CASE WHEN matiere.coeff_ds = 0 THEN 'NA' ELSE MAX(CASE note.type WHEN '0' THEN note.note ELSE NULL END) END AS DS,\n" +
+            "  CASE WHEN matiere.coeff_exam = 0 THEN 'NA' ELSE MAX(CASE note.type WHEN '1' THEN note.note ELSE NULL END) END AS EXAM,\n" +
+            "  CASE WHEN matiere.coeff_tp = 0 THEN 'NA' ELSE MAX(CASE note.type WHEN '2' THEN note.note ELSE NULL END) END AS TP,\n" +
+            "  CASE WHEN matiere.coeff_oral = 0 THEN 'NA' ELSE MAX(CASE note.type WHEN '3' THEN note.note ELSE NULL END) END AS ORAL,\n" +
+            "  ROUND(\n" +
+            "    (IFNULL(MAX(CASE note.type WHEN '0' THEN note.note * (matiere.coeff_ds/100) ELSE NULL END), 0)\n" +
+            "     + IFNULL(MAX(CASE note.type WHEN '1' THEN note.note * (matiere.coeff_exam/100) ELSE NULL END), 0)\n" +
+            "     + IFNULL(MAX(CASE note.type WHEN '2' THEN note.note * (matiere.coeff_tp/100) ELSE NULL END), 0)\n" +
+            "     + IFNULL(MAX(CASE note.type WHEN '3' THEN note.note * (matiere.coeff_oral/100) ELSE NULL END), 0))\n" +
+            "    , 2) AS moyenne\n" +
+            "FROM etudiant \n" +
+            "JOIN tp ON etudiant.id_tp = tp.td \n" +
+            "JOIN td ON tp.td = td.id_td \n" +
+            "JOIN section ON td.tds = section.id_section \n" +
+            "JOIN semestre ON section.id_semestre = semestre.id_semestre \n" +
+            "JOIN unite_semestres ON semestre.id_semestre = unite_semestres.semestres_id_semestre\n" +
+            "JOIN unite ON unite_semestres.unite_id_unite = unite.id_unite\n" +
+            "JOIN matiere ON unite.id_unite = matiere.unite\n" +
+            "LEFT JOIN note ON etudiant.id = note.id_etudiant AND matiere.id_matiere = note.id_matiere\n" +
+            "WHERE etudiant.id = 13 AND semestre.id_semestre = 1\n" +
+            "GROUP BY matiere.id_matiere")
+    List<Object[]> findSectionsByEtudiantId(@Param("etudiantId") Long etudiantId,
+                                            @Param("semestreId") Long semestreId);
 
 }
