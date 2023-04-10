@@ -4,6 +4,7 @@ package com.example.demo.gestionNote.EnseignantNote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,7 @@ public class NoteEnseignantNoteController {
 
     @PostMapping(path = "/addNotesSection",consumes = "application/json")
     public void addNotesSection( @RequestBody NotesRequest<ObjectNoteSection> request){
+        System.out.println(request.toString());
         for (ObjectNoteSection e:request.getList()){
             System.out.println(e.toString());
         }
@@ -213,6 +215,8 @@ class NotesRequest <T>{
     private int typeGroup;
     private T[] list;
 
+    private Long idSemestre;
+
     public Long getIdEnseignant() {
         return idEnseignant;
     }
@@ -227,5 +231,20 @@ class NotesRequest <T>{
 
     public T[] getList() {
         return list;
+    }
+
+    public Long getIdSemestre() {
+        return idSemestre;
+    }
+
+    @Override
+    public String toString() {
+        return "NotesRequest{" +
+                "idEnseignant=" + idEnseignant +
+                ", idMatiere=" + idMatiere +
+                ", typeGroup=" + typeGroup +
+                ", list=" + Arrays.toString(list) +
+                ", idSemestre=" + idSemestre +
+                '}';
     }
 }

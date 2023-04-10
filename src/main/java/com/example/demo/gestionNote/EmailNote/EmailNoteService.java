@@ -12,12 +12,12 @@ public class EmailNoteService {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendHtmlEmail(String toEmail,String body,String object) throws MessagingException
+    public void sendHtmlEmailForSection(String toEmail,Float noteDs,Float noteExam,String nomMatiere,String nomEtudiant,String prenomEtudiant) throws MessagingException
     {
         MimeMessage message = mailSender.createMimeMessage();
-
+        System.out.println(noteDs);
         message.setRecipients(MimeMessage.RecipientType.TO, toEmail);
-        message.setSubject("Test email from Spring");
+        message.setSubject("Nouvelle Note");
 
         String htmlContent = "\n" +
                 "\n" +
@@ -28,15 +28,6 @@ public class EmailNoteService {
                 "  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n" +
                 "  <meta name=\"x-apple-disable-message-reformatting\">\n" +
                 "  <title></title>\n" +
-                "  <!--[if mso]>\n" +
-                "  <noscript>\n" +
-                "    <xml>\n" +
-                "      <o:OfficeDocumentSettings>\n" +
-                "        <o:PixelsPerInch>96</o:PixelsPerInch>\n" +
-                "      </o:OfficeDocumentSettings>\n" +
-                "    </xml>\n" +
-                "  </noscript>\n" +
-                "  <![endif]-->\n" +
                 "  <style>\n" +
                 "    table, td, div, h1, p {font-family: Arial, sans-serif;}\n" +
                 "  </style>\n" +
@@ -48,64 +39,50 @@ public class EmailNoteService {
                 "        <table role=\"presentation\" style=\"width:602px;border-collapse:collapse;border:1px solid #cccccc;border-spacing:0;text-align:left;\">\n" +
                 "          <tr>\n" +
                 "            <td align=\"center\" style=\"padding:40px 0 30px 0;background:#70bbd9;\">\n" +
-                "              <img src=\"https://assets.codepen.io/210284/h1.png\" alt=\"\" width=\"300\" style=\"height:auto;display:block;\" />\n" +
+                "              <img src='https://i.postimg.cc/0Mm51C0c/score.png' height=\"100\" width=\"100\" alt='score'/>\n" +
+                "              <h2 style=\"font-size:24px;margin:2 0 20px 0;font-family:Arial,sans-serif; color: #153643;\">Nouvelle Note</h1>\n" +
                 "            </td>\n" +
                 "          </tr>\n" +
                 "          <tr>\n" +
-                "            <td style=\"padding:36px 30px 42px 30px;\">\n" +
+                "            <td style=\"padding:36px 30px 10px 30px;\">\n" +
                 "              <table role=\"presentation\" style=\"width:100%;border-collapse:collapse;border:0;border-spacing:0;\">\n" +
                 "                <tr>\n" +
-                "                  <td style=\"padding:0 0 36px 0;color:#153643;\">\n" +
-                "                    <h1 style=\"font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;\">Creating Email Magic</h1>\n" +
-                "                    <p style=\"margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan et dictum, nisi libero ultricies ipsum, posuere neque at erat.</p>\n" +
-                "                    <p style=\"margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;\"><a href=\"http://www.example.com\" style=\"color:#ee4c50;text-decoration:underline;\">In tempus felis blandit</a></p>\n" +
-                "                  </td>\n" +
-                "                </tr>\n" +
-                "                <tr>\n" +
-                "                  <td style=\"padding:0;\">\n" +
-                "                    <table role=\"presentation\" style=\"width:100%;border-collapse:collapse;border:0;border-spacing:0;\">\n" +
-                "                      <tr>\n" +
-                "                        <td style=\"width:260px;padding:0;vertical-align:top;color:#153643;\">\n" +
-                "                          <p style=\"margin:0 0 25px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;\"><img src=\"https://assets.codepen.io/210284/left.gif\" alt=\"\" width=\"260\" style=\"height:auto;display:block;\" /></p>\n" +
-                "                          <p style=\"margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, est nisi libero ultricies ipsum, in posuere mauris neque at erat.</p>\n" +
-                "                          <p style=\"margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;\"><a href=\"http://www.example.com\" style=\"color:#ee4c50;text-decoration:underline;\">Blandit ipsum volutpat sed</a></p>\n" +
-                "                        </td>\n" +
-                "                        <td style=\"width:20px;padding:0;font-size:0;line-height:0;\">&nbsp;</td>\n" +
-                "                        <td style=\"width:260px;padding:0;vertical-align:top;color:#153643;\">\n" +
-                "                          <p style=\"margin:0 0 25px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;\"><img src=\"https://assets.codepen.io/210284/right.gif\" alt=\"\" width=\"260\" style=\"height:auto;display:block;\" /></p>\n" +
-                "                          <p style=\"margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;\">Morbi porttitor, eget est accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed.</p>\n" +
-                "                          <p style=\"margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;\"><a href=\"http://www.example.com\" style=\"color:#ee4c50;text-decoration:underline;\">In tempus felis blandit</a></p>\n" +
-                "                        </td>\n" +
-                "                      </tr>\n" +
-                "                    </table>\n" +
+                "                  <td style=\"padding:0 0 15px 0;color:#153643;\">\n" +
+                "                    <h1 style=\"font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;\">Nouvelle note ajouté</h1>\n" +
+                "                    <div  style=\"margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;\">\n" +
+                "                      <p>Cher/Chère "+nomEtudiant+" "+ prenomEtudiant+", </p>\n" +
+                "                      <p>Nous espérons que ce courriel vous trouve bien et que vous progressez dans vos études avec succès.</p>\n" +
+                "                      <p>\n" +
+                "                        Nous sommes heureux de vous informer qu'une nouvelle note a été ajoutée à votre dossier académique pour le cours <b>"+nomMatiere+"</b>\n" +
+                "                      </p>\n" +
+                "                      <table style=\"width:100%; border-color: black; border-style: solid;\" border=\"2px\" >\n" +
+                "                        <tr>\n" +
+                "                          <td align=\"center\">"+nomMatiere+"</td>\n" +
+                "                          <td align=\"center\">DS</td>\n" +
+                "                          <td align=\"center\">"+String.valueOf(noteDs)+"</td>\n" +
+                "                        </tr>\n" +
+                "                        <tr>\n" +
+                "                          <td align=\"center\">"+nomMatiere+"</td>\n" +
+                "                          <td align=\"center\">Exam</td>\n" +
+                "                          <td align=\"center\">"+noteExam+"</td>\n" +
+                "                        </tr>\n" +
+                "                      </table>\n" +
+                "                      <p>Nous vous invitons à vous connecter à la plateforme pour consulter votre nouvelle note et vérifier\n" +
+                "                        si elle a été correctement enregistrée dans votre dossier. </p>\n" +
+                "                        <div style=\"text-align: center;\">\n" +
+                "                                          <a href=\"https://stormynight9.github.io/isimm-frontend/\" style=\"background-color: #153643 ;border: none;color: white;padding: 12px 24px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;border-radius: 8px;box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);\" >Consulter Votre Espace</a>\n\n" +
+                "                    </div>\n" +
+                "                    </div>\n" +
                 "                  </td>\n" +
                 "                </tr>\n" +
                 "              </table>\n" +
                 "            </td>\n" +
                 "          </tr>\n" +
                 "          <tr>\n" +
-                "            <td style=\"padding:30px;background:#ee4c50;\">\n" +
-                "              <table role=\"presentation\" style=\"width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;\">\n" +
-                "                <tr>\n" +
-                "                  <td style=\"padding:0;width:50%;\" align=\"left\">\n" +
-                "                    <p style=\"margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;\">\n" +
-                "                      &reg; Someone, Somewhere 2021<br/><a href=\"http://www.example.com\" style=\"color:#ffffff;text-decoration:underline;\">Unsubscribe</a>\n" +
-                "                    </p>\n" +
-                "                  </td>\n" +
-                "                  <td style=\"padding:0;width:50%;\" align=\"right\">\n" +
-                "                    <table role=\"presentation\" style=\"border-collapse:collapse;border:0;border-spacing:0;\">\n" +
-                "                      <tr>\n" +
-                "                        <td style=\"padding:0 0 0 10px;width:38px;\">\n" +
-                "                          <a href=\"http://www.twitter.com/\" style=\"color:#ffffff;\"><img src=\"https://assets.codepen.io/210284/tw_1.png\" alt=\"Twitter\" width=\"38\" style=\"height:auto;display:block;border:0;\" /></a>\n" +
-                "                        </td>\n" +
-                "                        <td style=\"padding:0 0 0 10px;width:38px;\">\n" +
-                "                          <a href=\"http://www.facebook.com/\" style=\"color:#ffffff;\"><img src=\"https://assets.codepen.io/210284/fb_1.png\" alt=\"Facebook\" width=\"38\" style=\"height:auto;display:block;border:0;\" /></a>\n" +
-                "                        </td>\n" +
-                "                      </tr>\n" +
-                "                    </table>\n" +
-                "                  </td>\n" +
-                "                </tr>\n" +
-                "              </table>\n" +
+                "            <td style=\"padding:30px;background:#70bbd9;\">\n" +
+                "              <div style=\"margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif; color: #ffffff; text-align: center;\">\n" +
+                "                <p>© 2023 Espace Étudiant. Tous droits réservés.</p>\n" +
+                "              </div>\n" +
                 "            </td>\n" +
                 "          </tr>\n" +
                 "        </table>\n" +
