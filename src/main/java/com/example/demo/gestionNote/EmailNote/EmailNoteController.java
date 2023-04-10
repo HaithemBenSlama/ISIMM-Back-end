@@ -17,7 +17,6 @@ public class EmailNoteController {
     @GetMapping("/{mail}")
     public void getnewpassword(@PathVariable String mail) throws MessagingException {
 
-        emailNoteService.sendHtmlEmail(mail,"update note :","changement note");
-
+        emailNoteService.sendHtmlEmailForSection(mail,10.5F,11F,"Analyse de données","Tayari","Belhassen");
     }
 }
