@@ -47,17 +47,10 @@ public class NoteEnseignantNoteController {
 }
 
 class ObjectNoteTd{
-    private String cinEtudiant;
     private Long idEtudiant;
     private Long idNote;
     private Float noteOral;
-    private String nomEtudiant;
-    private String prenomEtudiant;
-    private int typeNote;
 
-    public String getCinEtudiant() {
-        return cinEtudiant;
-    }
 
     public Long getIdEtudiant() {
         return idEtudiant;
@@ -71,44 +64,13 @@ class ObjectNoteTd{
         return noteOral;
     }
 
-    public String getNomEtudiant() {
-        return nomEtudiant;
-    }
-
-    public String getPrenomEtudiant() {
-        return prenomEtudiant;
-    }
-
-    public int getTypeNote() {
-        return typeNote;
-    }
-
-    @Override
-    public String toString() {
-        return "ObjectNoteTd{" +
-                "cinEtudiant='" + cinEtudiant + '\'' +
-                ", idEtudiant=" + idEtudiant +
-                ", idNote=" + idNote +
-                ", noteOral=" + noteOral +
-                ", nomEtudiant='" + nomEtudiant + '\'' +
-                ", prenomEtudiant='" + prenomEtudiant + '\'' +
-                ", typeNote=" + typeNote +
-                '}';
-    }
 }
 
 class ObjectNoteTp{
-    private String cinEtudiant;
     private Long idEtudiant;
     private Long idNote;
     private Float noteTp;
-    private String nomEtudiant;
-    private String prenomEtudiant;
-    private int typeNote;
 
-    public String getCinEtudiant() {
-        return cinEtudiant;
-    }
 
     public Long getIdEtudiant() {
         return idEtudiant;
@@ -122,44 +84,18 @@ class ObjectNoteTp{
         return noteTp;
     }
 
-    public String getNomEtudiant() {
-        return nomEtudiant;
-    }
 
-    public String getPrenomEtudiant() {
-        return prenomEtudiant;
-    }
 
-    public int getTypeNote() {
-        return typeNote;
-    }
 
-    @Override
-    public String toString() {
-        return "ObjectNoteTp{" +
-                "cinEtudiant='" + cinEtudiant + '\'' +
-                ", idEtudiant=" + idEtudiant +
-                ", idNote=" + idNote +
-                ", noteTp=" + noteTp +
-                ", nomEtudiant='" + nomEtudiant + '\'' +
-                ", prenomEtudiant='" + prenomEtudiant + '\'' +
-                ", typeNote=" + typeNote +
-                '}';
-    }
+
 }
 class ObjectNoteSection{
-    private String cinEtudiant;
     private Long idEtudiant;
     private Long idNoteDs;
     private Long idNoteExam;
     private Float noteDs;
     private Float noteExam;
-    private String nomEtudiant;
-    private String prenomEtudiant;
 
-    public String getCinEtudiant() {
-        return cinEtudiant;
-    }
 
     public Long getIdEtudiant() {
         return idEtudiant;
@@ -181,27 +117,8 @@ class ObjectNoteSection{
         return noteExam;
     }
 
-    public String getNomEtudiant() {
-        return nomEtudiant;
-    }
 
-    public String getPrenomEtudiant() {
-        return prenomEtudiant;
-    }
 
-    @Override
-    public String toString() {
-        return "ObjectNoteSection{" +
-                "cinEtudiant='" + cinEtudiant + '\'' +
-                ", idEtudiant=" + idEtudiant +
-                ", idNoteDs=" + idNoteDs +
-                ", idNoteExam=" + idNoteExam +
-                ", noteDs=" + noteDs +
-                ", noteExam=" + noteExam +
-                ", nomEtudiant='" + nomEtudiant + '\'' +
-                ", prenomEtudiant='" + prenomEtudiant + '\'' +
-                '}';
-    }
 }
 class NotesRequest <T>{
     private Long idEnseignant;
