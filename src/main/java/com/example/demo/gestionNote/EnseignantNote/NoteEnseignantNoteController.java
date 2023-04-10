@@ -29,13 +29,128 @@ public class NoteEnseignantNoteController {
     }
 
     @PostMapping(path = "/addNotesSection",consumes = "application/json")
-    public void registerReclamation( @RequestBody NotesRequest request){
+    public void addNotesSection( @RequestBody NotesRequest<ObjectNoteSection> request){
         for (ObjectNoteSection e:request.getList()){
+            System.out.println(e.toString());
+        }
+    }
+
+    @PostMapping(path = "/addNotesTd",consumes = "application/json")
+    public void addNotesTd( @RequestBody NotesRequest<ObjectNoteTd> request){
+        for (ObjectNoteTd e:request.getList()){
+            System.out.println(e.toString());
+        }
+    }
+
+    @PostMapping(path = "/addNotesTp",consumes = "application/json")
+    public void addNotesTp( @RequestBody NotesRequest<ObjectNoteTp> request){
+        for (ObjectNoteTp e:request.getList()){
             System.out.println(e.toString());
         }
     }
 }
 
+class ObjectNoteTd{
+    private String cinEtudiant;
+    private Long idEtudiant;
+    private Long idNote;
+    private Float noteOral;
+    private String nomEtudiant;
+    private String prenomEtudiant;
+    private int typeNote;
+
+    public String getCinEtudiant() {
+        return cinEtudiant;
+    }
+
+    public Long getIdEtudiant() {
+        return idEtudiant;
+    }
+
+    public Long getIdNote() {
+        return idNote;
+    }
+
+    public Float getNoteOral() {
+        return noteOral;
+    }
+
+    public String getNomEtudiant() {
+        return nomEtudiant;
+    }
+
+    public String getPrenomEtudiant() {
+        return prenomEtudiant;
+    }
+
+    public int getTypeNote() {
+        return typeNote;
+    }
+
+    @Override
+    public String toString() {
+        return "ObjectNoteTd{" +
+                "cinEtudiant='" + cinEtudiant + '\'' +
+                ", idEtudiant=" + idEtudiant +
+                ", idNote=" + idNote +
+                ", noteOral=" + noteOral +
+                ", nomEtudiant='" + nomEtudiant + '\'' +
+                ", prenomEtudiant='" + prenomEtudiant + '\'' +
+                ", typeNote=" + typeNote +
+                '}';
+    }
+}
+
+class ObjectNoteTp{
+    private String cinEtudiant;
+    private Long idEtudiant;
+    private Long idNote;
+    private Float noteTp;
+    private String nomEtudiant;
+    private String prenomEtudiant;
+    private int typeNote;
+
+    public String getCinEtudiant() {
+        return cinEtudiant;
+    }
+
+    public Long getIdEtudiant() {
+        return idEtudiant;
+    }
+
+    public Long getIdNote() {
+        return idNote;
+    }
+
+    public Float getNoteTp() {
+        return noteTp;
+    }
+
+    public String getNomEtudiant() {
+        return nomEtudiant;
+    }
+
+    public String getPrenomEtudiant() {
+        return prenomEtudiant;
+    }
+
+    public int getTypeNote() {
+        return typeNote;
+    }
+
+    @Override
+    public String toString() {
+        return "ObjectNoteTp{" +
+                "cinEtudiant='" + cinEtudiant + '\'' +
+                ", idEtudiant=" + idEtudiant +
+                ", idNote=" + idNote +
+                ", noteTp=" + noteTp +
+                ", nomEtudiant='" + nomEtudiant + '\'' +
+                ", prenomEtudiant='" + prenomEtudiant + '\'' +
+                ", typeNote=" + typeNote +
+                '}';
+    }
+}
 class ObjectNoteSection{
     private String cinEtudiant;
     private Long idEtudiant;
@@ -92,11 +207,11 @@ class ObjectNoteSection{
                 '}';
     }
 }
-class NotesRequest {
+class NotesRequest <T>{
     private Long idEnseignant;
     private Long idMatiere;
     private int typeGroup;
-    private ObjectNoteSection[] list;
+    private T[] list;
 
     public Long getIdEnseignant() {
         return idEnseignant;
@@ -110,7 +225,7 @@ class NotesRequest {
         return typeGroup;
     }
 
-    public ObjectNoteSection[] getList() {
+    public T[] getList() {
         return list;
     }
 }
