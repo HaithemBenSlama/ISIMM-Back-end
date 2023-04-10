@@ -30,23 +30,17 @@ public class NoteEnseignantNoteController {
 
     @PostMapping(path = "/addNotesSection",consumes = "application/json")
     public void addNotesSection( @RequestBody NotesRequest<ObjectNoteSection> request){
-        for (ObjectNoteSection e:request.getList()){
-            System.out.println(e.toString());
-        }
+        noteEnseignantServices.addNotesSection(request);
     }
 
     @PostMapping(path = "/addNotesTd",consumes = "application/json")
     public void addNotesTd( @RequestBody NotesRequest<ObjectNoteTd> request){
-        for (ObjectNoteTd e:request.getList()){
-            System.out.println(e.toString());
-        }
+        noteEnseignantServices.addNotesTd(request);
     }
 
     @PostMapping(path = "/addNotesTp",consumes = "application/json")
     public void addNotesTp( @RequestBody NotesRequest<ObjectNoteTp> request){
-        for (ObjectNoteTp e:request.getList()){
-            System.out.println(e.toString());
-        }
+        noteEnseignantServices.addNotesTp(request);
     }
 }
 
@@ -212,7 +206,11 @@ class NotesRequest <T>{
     private Long idMatiere;
     private int typeGroup;
     private T[] list;
+    private Long idSemestre;
 
+    public Long getIdSemestre(){
+        return idSemestre;
+    }
     public Long getIdEnseignant() {
         return idEnseignant;
     }
