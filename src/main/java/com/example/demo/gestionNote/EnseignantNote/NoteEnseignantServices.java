@@ -50,12 +50,12 @@ public class NoteEnseignantServices {
                 if(n == null){
                     throw new IllegalStateException("Note n'existe pas");
                 }
-                n.setNote(e.getNoteTp());
+                n.setNote(Float.parseFloat(e.getNoteTp()));
                 noteRepository.save(n);
             }
 
             if(e.getNoteTp() != null && e.getIdNote() == null){
-                Note n = new Note(matiere,etudiant,enseignant, TypeDevoir.TP,e.getNoteTp(),new Date(),semestre);
+                Note n = new Note(matiere,etudiant,enseignant, TypeDevoir.TP,Float.parseFloat(e.getNoteTp()),new Date(),semestre);
                 noteRepository.save(n);
             }
         }

@@ -101,7 +101,7 @@ class ObjectNoteTp{
     private String cinEtudiant;
     private Long idEtudiant;
     private Long idNote;
-    private Float noteTp;
+    private String noteTp;
     private String nomEtudiant;
     private String prenomEtudiant;
     private int typeNote;
@@ -118,7 +118,7 @@ class ObjectNoteTp{
         return idNote;
     }
 
-    public Float getNoteTp() {
+    public String getNoteTp() {
         return noteTp;
     }
 
