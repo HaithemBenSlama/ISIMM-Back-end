@@ -1,6 +1,7 @@
 package com.example.demo.gestionNote.EnseignantNote;
 
 
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,18 +31,18 @@ public class NoteEnseignantNoteController {
     }
 
     @PostMapping(path = "/addNotesSection",consumes = "application/json")
-    public void addNotesSection( @RequestBody NotesRequest<ObjectNoteSection> request){
+    public void addNotesSection( @RequestBody NotesRequest<ObjectNoteSection> request) throws MessagingException {
         noteEnseignantServices.addNotesSection(request);
 
     }
 
     @PostMapping(path = "/addNotesTd",consumes = "application/json")
-    public void addNotesTd( @RequestBody NotesRequest<ObjectNoteTd> request){
+    public void addNotesTd( @RequestBody NotesRequest<ObjectNoteTd> request) throws MessagingException {
         noteEnseignantServices.addNotesTd(request);
     }
 
     @PostMapping(path = "/addNotesTp",consumes = "application/json")
-    public void addNotesTp( @RequestBody NotesRequest<ObjectNoteTp> request){
+    public void addNotesTp( @RequestBody NotesRequest<ObjectNoteTp> request) throws MessagingException {
         noteEnseignantServices.addNotesTp(request);
     }
 }

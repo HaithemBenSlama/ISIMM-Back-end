@@ -242,7 +242,7 @@ public class DemoApplication {
 
 		Etudiant e1= new Etudiant("13507341","Abassi","Ghada",new Date(), Sexe.FEMME,"Monastir","123456789","Ghada@gmail.com","23569852",22,td1,tp1);
 		Etudiant e2= new Etudiant("14009108","Ben Abdallah","Syrine",new Date(), Sexe.FEMME,"Monastir","123456789","syrine@gmail.com","24569321",22,td1,tp1);
-		Etudiant e3= new Etudiant("11985827","Ben Slama","Haithem",new Date(), Sexe.HOMME,"Monastir","123456789","Haithem@gmail.com","27660834",22,td1,tp1);
+		Etudiant e3= new Etudiant("11985827","Ben Slama","Haithem",new Date(), Sexe.HOMME,"Monastir","123456789","Haithem.benslama@hotmail.fr","27660834",22,td1,tp1);
 		Etudiant e4= new Etudiant("14020786","Bouzgarrou","Fatma",new Date(), Sexe.FEMME,"Monastir","123456789","fatma@gmail.com","29856352",22,td1,tp1);
 		Etudiant e5= new Etudiant("14007249","Chaftar","Ghazi",new Date(), Sexe.HOMME,"Monastir","123456789","ghazi@gmail.com","21452365",22,td1,tp1);
 		Etudiant e6= new Etudiant("12880792","Chiba","Tasnim",new Date(), Sexe.FEMME,"Monastir","123456789","tasnim@gmail.com","23456859",22,td1,tp1);
