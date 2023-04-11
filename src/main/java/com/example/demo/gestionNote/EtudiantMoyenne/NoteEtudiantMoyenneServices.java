@@ -1,7 +1,9 @@
 package com.example.demo.gestionNote.EtudiantMoyenne;
 
+import com.example.demo.Doa.EtudiantRepository;
 import com.example.demo.Doa.NoteRepository;
 
+import com.example.demo.entities.Etudiant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,10 @@ public class NoteEtudiantMoyenneServices {
 
     @Autowired
     private NoteRepository noteRepository;
+
+
+    @Autowired
+    private EtudiantRepository etudiantRepository;
 
     public List<Map<String, String>> findSectionsByEtudiantId(Long idEtudiant, Long idSemestre) {
         List<Object[]> result = noteRepository.findSectionsByEtudiantId(idEtudiant, idSemestre);
@@ -31,6 +37,10 @@ public class NoteEtudiantMoyenneServices {
             mappedResult.add(mappedRow);
         }
         return mappedResult;
+    }
+
+    public Optional<Etudiant> findEtudiantByIdAndSemesterId(Long etudiantId, Long semestreId) {
+        return etudiantRepository.findEtudiantByIdAndSemesterId(etudiantId, semestreId);
     }
 
 }
