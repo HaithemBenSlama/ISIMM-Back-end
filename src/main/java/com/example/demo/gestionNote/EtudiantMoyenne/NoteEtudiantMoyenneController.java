@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/etudiant-moyenne")
+@RequestMapping("api/isimm/chargeNote/EtudiantMoyenne")
 @CrossOrigin(origins = "*")
 public class NoteEtudiantMoyenneController {
 

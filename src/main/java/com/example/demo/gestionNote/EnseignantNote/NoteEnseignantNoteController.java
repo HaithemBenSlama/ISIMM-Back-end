@@ -10,7 +10,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("api/isimm/chargeNote/EnseignantNote")
-@CrossOrigin
+@CrossOrigin("*")
 public class NoteEnseignantNoteController {
 
     private final NoteEnseignantServices noteEnseignantServices;
