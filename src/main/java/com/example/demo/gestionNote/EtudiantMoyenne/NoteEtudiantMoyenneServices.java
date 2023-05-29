@@ -25,10 +25,10 @@ public class NoteEtudiantMoyenneServices {
             mappedRow.put("unite_name", String.valueOf(row[1]));
             mappedRow.put("id_matiere", String.valueOf(row[2]));
             mappedRow.put("matiere", String.valueOf(row[3]));
-            mappedRow.put("TP", String.valueOf(row[4]));
-            mappedRow.put("ORAL", String.valueOf(row[5]));
-            mappedRow.put("DS", String.valueOf(row[6]));
-            mappedRow.put("EXAM", String.valueOf(row[7]));
+            mappedRow.put("DS", String.valueOf(row[4]));
+            mappedRow.put("EXAM", String.valueOf(row[5]));
+            mappedRow.put("TP", String.valueOf(row[6]));
+            mappedRow.put("ORAL", String.valueOf(row[7]));
             mappedRow.put("moyenne", String.valueOf(row[8]));
             mappedResult.add(mappedRow);
         }
