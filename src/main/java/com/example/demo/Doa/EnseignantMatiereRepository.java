@@ -20,15 +20,18 @@ public interface EnseignantMatiereRepository extends JpaRepository<EnseignantMat
             "CASE WHEN em.groupType = 1 THEN td.name ELSE NULL END AS nameTD, " +
             "em.session AS session, em.matiere.idMatiere AS idMatiere, " +
             "m.name AS nameMatiere, s.idSection AS idSection, " +
-            "s.name AS nameSection, em.semestre.idSemestre AS idSemestre, " +
-            "em.semestre.name AS nameSemestre) " +
+            "s.name AS nameSection, sem.idSemestre AS idSemestre, " +
+            "sem.name AS nameSemestre) " +
             "FROM EnseignantMatiere em " +
-            "JOIN Matiere m ON m.idMatiere = em.matiere " +
-            "JOIN Section s ON s.semestre.idSemestre IN (em.semestre.idSemestre, em.semester2.idSemestre) " +
+            "JOIN Matiere m ON m.idMatiere = em.matiere.idMatiere " +
+            "JOIN Section s ON (s.semestre = em.semestre OR s.semestre2 = em.semestre) " +
+            "JOIN Semestre sem ON sem.idSemestre = em.semestre.idSemestre " +
             "LEFT JOIN TP t ON t.idTp = em.groupId " +
             "LEFT JOIN TD td ON td.idTd = em.groupId " +
             "WHERE em.enseignant.id = :id_enseignant")
     List<Map<String, Object>> noteFindSectionAndClassesByEnseignantId(Long id_enseignant);
+
+
 
 
 }

@@ -35,7 +35,7 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
             "JOIN tp ON etudiant.id_tp = tp.td \n" +
             "JOIN td ON tp.td = td.id_td \n" +
             "JOIN section ON td.tds = section.id_section \n" +
-            "JOIN semestre ON section.id_semestre = semestre.id_semestre \n" +
+            "JOIN semestre ON semestre.id_semestre in (section.id_semestre1,section.id_semestre2 ) \n" +
             "JOIN niveau ON semestre.id_niveau = niveau.id_niveau\n" +
             "JOIN diplome ON niveau.my_diplome = diplome.id_diplome\n" +
             "LEFT JOIN unite_semestres ON semestre.id_semestre = unite_semestres.semestres_id_semestre\n" +
