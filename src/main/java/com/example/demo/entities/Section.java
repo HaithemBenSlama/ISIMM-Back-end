@@ -24,43 +24,47 @@ public class Section implements Serializable {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_semestre1")
+    @JoinColumn(name="id_semestre")
     @JsonBackReference
     private Semestre semestre;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_semestre2")
-    @JsonBackReference
-    private Semestre semestre2;
 
     @OneToMany(mappedBy = "section", fetch = FetchType.LAZY)
     @JsonManagedReference
     private Set<TD> tds;
 
 
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_semestre2")
+    @JsonBackReference
+    private Semestre semestre2;
 
     public Section() {
 
     }
 
-    public Section(Long idSection, String name, Semestre semestre1, Semestre semestre2, Set<TD> tds) {
-        this.idSection = idSection;
-        this.name = name;
-        this.semestre = semestre1;
-        this.semestre2 = semestre2;
-        this.tds = tds;
-    }
-
     public Section(String name, Semestre semestre, Set<TD> tds) {
         this.name = name;
-        this.semestre= semestre;
+        this.semestre = semestre;
         this.tds = tds;
     }
 
     public Section(String name, Semestre semestre) {
         this.name = name;
         this.semestre = semestre;
+        this.tds = new HashSet<>();
+    }
+
+    public Section(String name, Semestre semestre, Semestre semestre2, Set<TD> tds) {
+        this.name = name;
+        this.semestre = semestre;
+        this.semestre2 = semestre2;
+        this.tds = tds;
+    }
+
+    public Section(String name, Semestre semestre, Semestre semestre2) {
+        this.name = name;
+        this.semestre = semestre;
+        this.semestre2 = semestre2;
         this.tds = new HashSet<>();
     }
 
